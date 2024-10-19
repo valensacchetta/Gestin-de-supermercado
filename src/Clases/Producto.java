@@ -16,4 +16,20 @@ public class Producto {
         this.categoria = categoria;
         id++;
     }
+    //Getters
+    public int getId() {
+        return id;
+    }
+    public String getNombre() {
+        return nombre;
+    }
+    public int getUnidades() {
+        return unidades;
+    }
+    public String getCategoria() {
+        return categoria;
+    }
+    public double getPrecio() {
+        return precio;
+    }
 }
