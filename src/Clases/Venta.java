@@ -6,7 +6,6 @@ import java.util.List;
 
 public class Venta {
     //Atributos: id, fecha, cliente, listaProductos, total
-    //Métodos: calcularTotal()
     private int idVenta;
     private Date fecha;
     private Cliente cliente;
@@ -21,4 +20,14 @@ public class Venta {
         this.listaProductos = new ArrayList<Producto>();
         this.total = 0;
     }
+
+    //Metodos
+    public double calcularTotal(){
+        double total = 0;
+        for(Producto producto: listaProductos){
+            total += producto.getPrecio();
+        }
+        return total;
+    }
+
 }
