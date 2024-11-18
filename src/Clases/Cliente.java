@@ -1,5 +1,7 @@
 package Clases;
 
+import java.util.Objects;
+
 public class Cliente extends Persona {
     //Atributos: id, nombre(super), direccion, telefono, correo
 
@@ -24,4 +26,37 @@ public class Cliente extends Persona {
         this.correoElectronico = null;
         this.telefono = telefono;
     }
+
+    //Metodos
+
+    public static int getId() {
+        return id;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public String getCorreoElectronico() {
+        return correoElectronico;
+    }
+
+    public int getTelefono() {
+        return telefono;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cliente cliente = (Cliente) o;
+        return telefono == cliente.telefono && Objects.equals(correoElectronico, cliente.correoElectronico);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(correoElectronico, telefono);
+    }
+
+
 }

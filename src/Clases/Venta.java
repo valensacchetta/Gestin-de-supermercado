@@ -1,33 +1,70 @@
 package Clases;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Venta {
     //Atributos: id, fecha, cliente, listaProductos, total
     private int idVenta;
-    private Date fecha;
+    private static int contador=0;
+    private LocalDateTime fecha;
     private Cliente cliente;
     private List<Producto> listaProductos;
     private double total;
 
     //Constructor
-    public Venta(int idVenta, Date fecha, Cliente cliente){
-        this.idVenta = idVenta;
+    public Venta(LocalDateTime fecha, Cliente cliente,double total) {
+
+        this.idVenta = ++contador; //autoincremental para que cada venta sea unica
         this.fecha = fecha;
         this.cliente = cliente;
         this.listaProductos = new ArrayList<Producto>();
-        this.total = 0;
+        this.total = total;
+    }
+
+    public Venta(LocalDateTime fecha, List<Producto> listaProductos, double total) {
+        this.idVenta = ++contador;
+        this.fecha = fecha;
+        this.listaProductos = new ArrayList<Producto>();
+        this.total = total;
     }
 
     //Metodos
-    public double calcularTotal(){
-        double total = 0;
-        for(Producto producto: listaProductos){
-            total += producto.getPrecio();
-        }
+
+    public int getIdVenta() {
+        return idVenta;
+    }
+
+    public static int getContador() {
+        return contador;
+    }
+
+    public LocalDateTime getFecha() {
+        return fecha;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public List<Producto> getListaProductos() {
+        return listaProductos;
+    }
+
+    public double getTotal() {
         return total;
+    }
+
+    @Override
+    public String toString() {
+        return "Venta{" +
+                "idVenta=" + idVenta +
+                ", fecha=" + fecha +
+                ", cliente=" + cliente +
+                ", listaProductos=" + listaProductos +
+                ", total=" + total +
+                '}';
     }
 
 }
