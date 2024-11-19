@@ -58,13 +58,11 @@ public class Venta {
 
     @Override
     public String toString() {
-        return "Venta{" +
+        return "Supermercado Luna \n{" +
                 "idVenta=" + idVenta +
-                ", fecha=" + fecha +
-                ", cliente=" + cliente +
-                ", listaProductos=" + listaProductos +
-                ", total=" + total +
+                "\n fecha=" + fecha +
+                "\n listaProductos=" + listaProductos +
+                "\n total=" + total +
                 '}';
     }
-
 }

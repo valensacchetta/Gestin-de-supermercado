@@ -20,12 +20,56 @@ public class Cajero extends Empleado {
         Scanner sc = new Scanner(System.in);
         Venta nuevaVenta;
         System.out.println("¿Es cliente registrado? s/n");
-        String cliente = sc.nextLine();
-        if (cliente.equals("n")) {
-            nuevaVenta = new Venta(LocalDateTime.now(),getListaProductos(),calcularTotal());
+        String op = sc.nextLine();
+
+        if (op.equals("n")) {
+            // Crear venta sin cliente registrado
+            nuevaVenta = new Venta(LocalDateTime.now(), getListaProductos(), calcularTotal());
+            System.out.println(nuevaVenta);
+
+            // Incrementar contador de transacciones para este cajero
+            this.transaccionesRealizadas++;
+
+        } else {
+            // Buscar al cliente por DNI
+            System.out.println("Ingrese el DNI del cliente:");
+            String dni = sc.nextLine();
+            Gestion_clientes gestionClientes= new Gestion_clientes();
+            Cliente cliente = gestionClientes.buscarClientePorDNI(dni); // Metodo que busca al cliente
+
+            if (cliente != null) {
+                // Crear venta con cliente registrado
+                nuevaVenta = new Venta(LocalDateTime.now(),cliente,calcularTotal());
+                System.out.println(nuevaVenta);
+
+                // Incrementar contador de transacciones para este cajero
+                this.transaccionesRealizadas++;
+            } else {
+                System.out.println("Cliente no encontrado. Por favor, registre al cliente primero.");
+            }
         }
-        this.transaccionesRealizadas++;
     }
+
+    public void registrarCliente(){
+        Scanner sc = new Scanner(System.in);
+        Gestion_clientes gestionClientes= new Gestion_clientes();
+
+        System.out.println("Ingrese nombre del cliente:");
+        String nombre = sc.nextLine();
+        System.out.println("Ingrese apellido del cliente:");
+        String apellido = sc.nextLine();
+        System.out.println("Ingrese el DNI del cliente:");
+        String dni = sc.nextLine();
+        System.out.println("Ingrese la direccion del cliente:");
+        String direccion = sc.nextLine();
+        System.out.println("Ingrese el email del cliente:");
+        String email = sc.nextLine();
+        System.out.println("Ingrese el telefono del cliente:");
+        int telefono = sc.nextInt();
+        gestionClientes.agregarCliente(new Cliente(nombre,apellido,dni,direccion,email,telefono)); //Cliente guardado en la lista de clientes
+
+    }
+
 
     @Override
     public String toString() {
