@@ -14,6 +14,7 @@ public abstract class Persona {
         this.nombre = nombre;
         Apellido = apellido;
     }
+    public Persona(){}
 
     public String getDni() {
         return dni;

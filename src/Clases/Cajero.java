@@ -53,4 +53,12 @@ public class Cajero extends Empleado {
     public List<Producto> getListaProductos() {
         return listaProductos;
     }
+
+    public void cerrarCaja() {
+        LocalDateTime horaCierre = LocalDateTime.now();
+        System.out.println("Cierre de sesión del Cajero.");
+        System.out.println("Hora de cierre: " + horaCierre);
+
+        System.exit(0); // Termina el programa directamente
+    }
 }
