@@ -26,7 +26,7 @@ public class Venta {
     public Venta(LocalDateTime fecha, List<Producto> listaProductos, double total) {
         this.idVenta = ++contador;
         this.fecha = fecha;
-        this.listaProductos = new ArrayList<Producto>();
+        this.listaProductos = listaProductos;
         this.total = total;
     }
 
