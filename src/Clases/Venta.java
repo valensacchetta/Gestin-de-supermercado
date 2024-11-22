@@ -1,6 +1,11 @@
 package Clases;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +33,23 @@ public class Venta {
         this.fecha = fecha;
         this.listaProductos = listaProductos;
         this.total = total;
+    }
+
+    // Constructor para deserialización desde JSON
+    public Venta(JSONObject jsonVenta) {
+        try {
+            this.idVenta = jsonVenta.getInt("idVenta");
+            this.fecha = LocalDateTime.parse(jsonVenta.getString("fecha"), DateTimeFormatter.ISO_DATE_TIME);
+            this.cliente = new Cliente(jsonVenta.getJSONObject("cliente")); // Deserializa el cliente
+            this.listaProductos = new ArrayList<>();
+            JSONArray productosArray = jsonVenta.getJSONArray("listaProductos");
+            for (int i = 0; i < productosArray.length(); i++) {
+                this.listaProductos.add(new Producto(productosArray.getJSONObject(i))); // Deserializa cada producto
+            }
+            this.total = jsonVenta.getDouble("total");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     //Metodos
@@ -65,4 +87,24 @@ public class Venta {
                 "\n total=" + total +
                 '}';
     }
+
+    // Método para serialización a JSON
+    public JSONObject toJSON() {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("idVenta", idVenta);
+            jsonObject.put("fecha", fecha.format(DateTimeFormatter.ISO_DATE_TIME)); // Serializa la fecha como String
+            jsonObject.put("cliente", cliente.toJSON()); // Serializa el cliente
+            JSONArray productosArray = new JSONArray();
+            for (Producto producto : listaProductos) {
+                productosArray.put(producto.toJSON()); // Serializa cada producto
+            }
+            jsonObject.put("listaProductos", productosArray);
+            jsonObject.put("total", total);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
+    }
+
 }

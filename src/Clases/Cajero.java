@@ -1,10 +1,13 @@
 package Clases;
+import org.json.JSONObject;
+
 import java.util.*;
 import java.time.LocalDateTime;
 
 public class Cajero extends Empleado {
     private int transaccionesRealizadas;
     private List<Producto> listaProductos;
+
 
     public Cajero(String dni, String nombre, String apellido, String cargo, double salario) {
         super(dni, nombre, apellido, cargo, salario);
