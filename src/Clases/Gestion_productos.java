@@ -6,10 +6,10 @@ import java.util.Comparator;
 import java.util.Scanner;
 
 public class Gestion_productos {
-    private ArrayList<Producto> listaDeProductos;
+    private Map<String, Integer> listaDeProductos;
 
     public Gestion_productos() {
-        listaDeProductos = new ArrayList<>();
+        listaDeProductos = new HashMap();
     }
 
     public void AddProducto(Producto producto) {
