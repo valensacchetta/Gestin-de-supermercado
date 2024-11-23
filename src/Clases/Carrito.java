@@ -11,7 +11,6 @@ public class Carrito {
    // Atributos: listaProductos, cliente
    // Métodos: agregarProducto(), eliminarProducto(), calcularTotal(), finalizarCompra()
 
-    private int idCarrito;
     private Cliente cliente;
     //private int id_cliente;
     private List<Producto> listaProductos;
@@ -19,17 +18,20 @@ public class Carrito {
 
     //constructores
 
-    public Carrito(int idCarrito, Cliente cliente) {
-        this.idCarrito = idCarrito;
+    public Carrito(Cliente cliente) {
         this.cliente = cliente;
         this.listaProductos = new ArrayList<>();
-        this.total = 0;
+        this.total = calcularTotal();
+    }
+
+    public Carrito() {
+        this.listaProductos = new ArrayList<>();
+        this.total = calcularTotal();
     }
 
     // Constructor para deserialización desde JSON
     public Carrito(JSONObject jsonCarrito) {
         try {
-            this.idCarrito = jsonCarrito.getInt("idCarrito");
             this.cliente = new Cliente(jsonCarrito.getJSONObject("cliente")); // Deserializa el cliente
             this.listaProductos = new ArrayList<>();
             JSONArray productosArray = jsonCarrito.getJSONArray("listaProductos");
@@ -47,6 +49,11 @@ public class Carrito {
     public void agregarProducto(Producto producto) {
         listaProductos.add(producto);
     }
+    public void agregarProducto(Producto producto,int cantidad) {
+        for(int i=0;i<cantidad;i++) {
+            listaProductos.add(producto);
+        }
+    }
     public void eliminarProducto(Producto producto) {
         listaProductos.remove(producto);
     }
@@ -62,7 +69,6 @@ public class Carrito {
     public JSONObject toJSON() {
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("idCarrito", idCarrito);
             jsonObject.put("cliente", cliente.toJSON()); // Serializa el cliente
             JSONArray productosArray = new JSONArray();
             for (Producto producto : listaProductos) {

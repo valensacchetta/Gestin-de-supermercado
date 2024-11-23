@@ -70,7 +70,7 @@ public class Gestion_productos {
     private void cargarDesdeArchivo() {
         File archivo = new File(archivoProductos);
         if (!archivo.exists()) {
-            System.out.println("El archivo no existe. Se creará uno nuevo cuando se guarde.");
+            System.out.println("El archivo inexistente. Se creará uno nuevo cuando se guarde.");
             return;
         }
         try (Scanner scanner = new Scanner(new FileReader(archivoProductos))) {
