@@ -1,5 +1,6 @@
 package Clases;
 
+import Excepciones.ExcepcionProductoNoEncontrado;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -20,36 +21,48 @@ public class Gestion_productos {
 
     // Métodos para manejar productos
     public void addProducto(Producto producto) {
+        if (producto == null || producto.getNombre() == null || producto.getNombre().trim().isEmpty()) {
+            throw new IllegalArgumentException("El producto o su nombre no pueden ser nulos.");
+        }
         if (!listaDeProductos.containsKey(producto.getNombre())) {
             listaDeProductos.put(producto.getNombre(), producto);
+            guardarEnArchivo();
             System.out.println("Producto agregado correctamente.");
-            guardarEnArchivo(); // Guarda automáticamente
         } else {
             System.out.println("Ya existe un producto con el nombre: " + producto.getNombre());
         }
     }
 
     public void deleteProducto(String nombre) {
-        if (listaDeProductos.remove(nombre) != null) {
+        if (nombre == null || nombre.trim().isEmpty()) {
+            throw new IllegalArgumentException("El nombre del producto no puede ser nulo o vacío.");
+        }
+        Producto eliminado = listaDeProductos.remove(nombre);
+        if (eliminado != null) {
+            guardarEnArchivo();
             System.out.println("Producto eliminado correctamente.");
-            guardarEnArchivo(); // Guarda automáticamente
         } else {
-            System.out.println("No se encontró un producto con el nombre: " + nombre);
+            throw new ExcepcionProductoNoEncontrado("Producto con nombre " + nombre + " no encontrado.");
         }
     }
 
     public void mostrarLista() {
         if (listaDeProductos.isEmpty()) {
             System.out.println("La lista de productos está vacía.");
-            return;
-        }
-        for (Producto producto : listaDeProductos.values()) {
-            System.out.println(producto);
+        } else {
+            listaDeProductos.values().forEach(System.out::println);
         }
     }
 
     public Producto buscarProductoPorNombre(String nombre) {
-        return listaDeProductos.get(nombre);
+        if (nombre == null || nombre.trim().isEmpty()) {
+            throw new IllegalArgumentException("El nombre del producto no puede ser nulo o vacío.");
+        }
+        Producto producto = listaDeProductos.get(nombre);
+        if (producto == null) {
+            throw new ExcepcionProductoNoEncontrado("Producto con nombre " + nombre + " no encontrado.");
+        }
+        return producto;
     }
 
     // Serialización
@@ -62,7 +75,7 @@ public class Gestion_productos {
             file.write(jsonArray.toString(4));
             System.out.println("Productos guardados en: " + archivoProductos);
         } catch (IOException e) {
-            System.out.println("Error al guardar el archivo: " + e.getMessage());
+            System.err.println("Error al guardar el archivo: " + e.getMessage());
         }
     }
 

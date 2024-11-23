@@ -9,24 +9,21 @@ import java.util.List;
 
 public class Carrito {
    // Atributos: listaProductos, cliente
-   // Métodos: agregarProducto(), eliminarProducto(), calcularTotal(), finalizarCompra()
+   // Métodos: agregarProducto(), eliminarProducto(), calcularTotal()
 
     private Cliente cliente;
     //private int id_cliente;
     private List<Producto> listaProductos;
-    private double total;
 
     //constructores
 
     public Carrito(Cliente cliente) {
         this.cliente = cliente;
         this.listaProductos = new ArrayList<>();
-        this.total = calcularTotal();
     }
 
     public Carrito() {
         this.listaProductos = new ArrayList<>();
-        this.total = calcularTotal();
     }
 
     // Constructor para deserialización desde JSON
@@ -39,7 +36,6 @@ public class Carrito {
                 JSONObject jsonProducto = productosArray.getJSONObject(i);
                 this.listaProductos.add(new Producto(jsonProducto)); // Deserializa cada producto
             }
-            this.total = jsonCarrito.getDouble("total");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -47,19 +43,28 @@ public class Carrito {
 
     //metodos
     public void agregarProducto(Producto producto) {
-        listaProductos.add(producto);
+        if (producto != null) {
+            listaProductos.add(producto);
+        } else {
+            throw new IllegalArgumentException("El producto no puede ser nulo.");
+        }
     }
-    public void agregarProducto(Producto producto,int cantidad) {
-        for(int i=0;i<cantidad;i++) {
+    public void agregarProducto(Producto producto, int cantidad) {
+        if (producto == null || cantidad <= 0) {
+            throw new IllegalArgumentException("El producto no puede ser nulo y la cantidad debe ser mayor a cero.");
+        }
+        for (int i = 0; i < cantidad; i++) {
             listaProductos.add(producto);
         }
     }
     public void eliminarProducto(Producto producto) {
-        listaProductos.remove(producto);
+        if (!listaProductos.remove(producto)) {
+            throw new IllegalArgumentException("El producto no está en el carrito.");
+        }
     }
-    public double calcularTotal(){
+    public double calcularTotal() {
         double total = 0;
-        for(Producto producto: listaProductos){
+        for (Producto producto : listaProductos) {
             total += producto.getPrecio();
         }
         return total;
@@ -91,18 +96,10 @@ public class Carrito {
     }
 
     public List<Producto> getListaProductos() {
-        return listaProductos;
+        return new ArrayList<>(listaProductos);
     }
 
     public void setListaProductos(List<Producto> listaProductos) {
         this.listaProductos = listaProductos;
-    }
-
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
     }
 }

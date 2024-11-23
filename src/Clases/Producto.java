@@ -1,5 +1,6 @@
 package Clases;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Objects;
@@ -29,8 +30,8 @@ public class Producto {
             this.precio = producto.getDouble("precio");
             this.unidades = producto.getInt("unidades");
             this.categoria = producto.getString("categoria");
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (JSONException e) {
+            throw new IllegalArgumentException("Error al deserializar el producto desde JSON: " + e.getMessage());
         }
     }
 

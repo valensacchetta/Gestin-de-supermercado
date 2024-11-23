@@ -1,4 +1,7 @@
 package Clases;
+import Excepciones.ExcepcionClienteNoEncontrado;
+import Excepciones.ExcepcionProductoNoEncontrado;
+import Excepciones.ExcepcionVentaInvalida;
 import org.json.JSONObject;
 
 import java.util.*;
@@ -36,31 +39,40 @@ public class Cajero extends Empleado {
         }
     }
 
-    public void transaccionConCliente (){
+    public void transaccionConCliente() {
         Venta nuevaVenta;
         Scanner sc = new Scanner(System.in);
-        // Buscar al cliente por DNI
+
         System.out.println("Ingrese el DNI del cliente:");
         String dni = sc.nextLine();
-        Gestion_clientes gestionClientes= new Gestion_clientes();
-        Cliente cliente = gestionClientes.buscarClientePorDNI(dni); // Metodo que busca al cliente
 
-        if (cliente != null) {
-            // Crear venta con cliente registrado
-            Carrito carrito = nuevoCarritoCliente(cliente);
-            listaProductos = carrito.getListaProductos();
-            nuevaVenta = new Venta(LocalDateTime.now(),cliente,carrito.calcularTotal());
-            System.out.println(nuevaVenta);
-
-            // Incrementar contador de transacciones para este cajero
-            this.transaccionesRealizadas++;
-        } else {
-            System.out.println("Cliente no encontrado. Por favor, registre al cliente primero.");
+        if (dni == null || dni.trim().isEmpty()) {
+            throw new IllegalArgumentException("El DNI proporcionado es nulo o vacío.");
         }
+
+        Gestion_clientes gestionClientes = new Gestion_clientes();
+        Cliente cliente = gestionClientes.buscarClientePorDNI(dni);
+
+        if (cliente == null) {
+            throw new ExcepcionClienteNoEncontrado("Cliente con DNI " + dni + " no encontrado.");
+        }
+
+        Carrito carrito = nuevoCarritoCliente(cliente);
+
+        if (carrito.getListaProductos().isEmpty()) {
+            throw new ExcepcionVentaInvalida("No se pueden realizar ventas con un carrito vacío.");
+        }
+
+        nuevaVenta = new Venta(LocalDateTime.now(), cliente, carrito.calcularTotal());
+        System.out.println(nuevaVenta);
+        this.transaccionesRealizadas++;
     }
     public void transaccionSinCliente(){
         // Crear venta sin cliente registrado
         Carrito carrito = nuevoCarritoSinCliente();
+        if (carrito.getListaProductos().isEmpty()) {
+            throw new ExcepcionVentaInvalida("No se pueden realizar ventas con un carrito vacío.");
+        }
         Venta nuevaVenta;
         listaProductos = carrito.getListaProductos();
         nuevaVenta = new Venta(LocalDateTime.now(), getListaProductos(), carrito.calcularTotal());
@@ -98,23 +110,32 @@ public class Cajero extends Empleado {
                 '}';
     }
 
-    public Carrito nuevoCarritoCliente (Cliente cliente){
-        Carrito carrito =new Carrito(cliente);
+    public Carrito nuevoCarritoCliente(Cliente cliente) {
+        Carrito carrito = new Carrito(cliente);
         Scanner sc = new Scanner(System.in);
         Gestion_productos gesProd = new Gestion_productos();
         gesProd.mostrarLista();
         String prod;
         int cant;
+
         do {
-            System.out.println("Ingrese el nombre del producto a agregar, '0' para terminar :");
+            System.out.println("Ingrese el nombre del producto a agregar, '0' para terminar:");
             prod = sc.nextLine();
-            if(prod!="0") {
-                System.out.println("Cantidad? :");
+            if (!prod.equals("0")) {
+                Producto producto = gesProd.buscarProductoPorNombre(prod);
+                if (producto == null) {
+                    throw new ExcepcionProductoNoEncontrado("Producto " + prod + " no encontrado.");
+                }
+                System.out.println("Cantidad?");
                 cant = sc.nextInt();
+                if (cant <= 0) {
+                    throw new IllegalArgumentException("La cantidad ingresada debe ser mayor que cero.");
+                }
                 sc.nextLine();
-                carrito.agregarProducto(gesProd.buscarProductoPorNombre(prod),cant);
+                carrito.agregarProducto(producto, cant);
             }
-        }while (prod!="0");
+        } while (!prod.equals("0"));
+
         return carrito;
     }
     public Carrito nuevoCarritoSinCliente (){
@@ -128,8 +149,15 @@ public class Cajero extends Empleado {
             System.out.println("Ingrese el nombre del producto a agregar, '0' para terminar :");
             prod = sc.nextLine();
             if(!prod.equals("0")) {
+                Producto producto = gesProd.buscarProductoPorNombre(prod);
+                if (producto == null) {
+                    throw new ExcepcionProductoNoEncontrado("Producto " + prod + " no encontrado.");
+                }
                 System.out.println("Cantidad? :");
                 cant = sc.nextInt();
+                if (cant <= 0) {
+                    throw new IllegalArgumentException("La cantidad ingresada debe ser mayor que cero.");
+                }
                 sc.nextLine();
                 carrito.agregarProducto(gesProd.buscarProductoPorNombre(prod),cant);
             }

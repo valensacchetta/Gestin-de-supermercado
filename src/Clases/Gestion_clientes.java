@@ -1,5 +1,6 @@
 package Clases;
 
+import Excepciones.ExcepcionClienteNoEncontrado;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -23,30 +24,41 @@ public class Gestion_clientes {
 
     // Buscar cliente por DNI
     public Cliente buscarClientePorDNI(String dni) {
-        return clientes.get(dni); // Retorna null si no existe
+        if (dni == null || dni.trim().isEmpty()) {
+            throw new IllegalArgumentException("El DNI no puede ser nulo o vacío.");
+        }
+        Cliente cliente = clientes.get(dni);
+        if (cliente == null) {
+            throw new ExcepcionClienteNoEncontrado("Cliente con DNI " + dni + " no encontrado.");
+        }
+        return cliente;
     }
 
     // Agregar un cliente nuevo
     public void agregarCliente(Cliente cliente) {
-        if (clientes.containsKey(cliente.getDni())) {
-            System.out.println("El cliente con DNI " + cliente.getDni() + " ya está registrado.");
-        } else {
-            clientes.put(cliente.getDni(), cliente);
-            guardarClientesEnArchivo(); // Guardar los cambios en el archivo
-            System.out.println("Cliente agregado correctamente.");
+        if (cliente == null || cliente.getDni() == null || cliente.getDni().trim().isEmpty()) {
+            throw new IllegalArgumentException("El cliente o su DNI no pueden ser nulos.");
         }
+        if (clientes.containsKey(cliente.getDni())) {
+            throw new IllegalStateException("El cliente con DNI " + cliente.getDni() + " ya está registrado.");
+        }
+        clientes.put(cliente.getDni(), cliente);
+        guardarClientesEnArchivo();
+        System.out.println("Cliente agregado correctamente.");
     }
 
     // Dar de baja a un cliente
     public void eliminarCliente(String dni) {
-        Cliente cliente = clientes.get(dni);
-        if (cliente != null) {
-            cliente.setStatus(0); // Cambia el estado a baja
-            guardarClientesEnArchivo(); // Guardar los cambios en el archivo
-            System.out.println("Cliente dado de baja correctamente.");
-        } else {
-            System.out.println("No se encontró un cliente con el DNI " + dni + ".");
+        if (dni == null || dni.trim().isEmpty()) {
+            throw new IllegalArgumentException("El DNI no puede ser nulo o vacío.");
         }
+        Cliente cliente = clientes.get(dni);
+        if (cliente == null) {
+            throw new ExcepcionClienteNoEncontrado("Cliente con DNI " + dni + " no encontrado.");
+        }
+        cliente.setStatus(0); // Cambiar estado a baja
+        guardarClientesEnArchivo();
+        System.out.println("Cliente dado de baja correctamente.");
     }
 
     // Mostrar todos los clientes
@@ -65,14 +77,13 @@ public class Gestion_clientes {
     private void guardarClientesEnArchivo() {
         JSONArray arrayClientes = new JSONArray();
         for (Cliente cliente : clientes.values()) {
-            arrayClientes.put(cliente.toJSON()); // Convertir cada cliente a JSON
+            arrayClientes.put(cliente.toJSON());
         }
-
         try (FileWriter file = new FileWriter(archivoJson)) {
-            file.write(arrayClientes.toString(4)); // Escribe el JSON con formato
+            file.write(arrayClientes.toString(4));
             System.out.println("Clientes guardados en " + archivoJson);
         } catch (IOException e) {
-            System.err.println("Error al guardar los clientes en el archivo: " + e.getMessage());
+            System.err.println("Error al guardar los clientes: " + e.getMessage());
         }
     }
 
@@ -83,20 +94,17 @@ public class Gestion_clientes {
             System.out.println("El archivo de clientes no existe, se creará uno nuevo.");
             return;
         }
-
         try {
             String contenido = new String(Files.readAllBytes(file.toPath()));
             JSONArray arrayClientes = new JSONArray(contenido);
-
             for (int i = 0; i < arrayClientes.length(); i++) {
                 JSONObject jsonCliente = arrayClientes.getJSONObject(i);
                 Cliente cliente = new Cliente(jsonCliente);
-                clientes.put(cliente.getDni(), cliente); // Agregar al mapa
+                clientes.put(cliente.getDni(), cliente);
             }
-
             System.out.println("Clientes cargados desde el archivo.");
         } catch (Exception e) {
-            System.err.println("Error al cargar los clientes desde el archivo: " + e.getMessage());
+            System.err.println("Error al cargar los clientes: " + e.getMessage());
         }
     }
 }

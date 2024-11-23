@@ -88,7 +88,7 @@ public class Venta {
                 '}';
     }
 
-    // Método para serialización a JSON
+    // Metodo para serialización a JSON
     public JSONObject toJSON() {
         JSONObject jsonObject = new JSONObject();
         try {
