@@ -1,0 +1,32 @@
+[
+    {
+        "apellido": "Martínez",
+        "direccion": "Boulevard del Sol 789",
+        "id": 1,
+        "telefono": 456789123,
+        "nombre": "Luis",
+        "correoElectronico": "luis@example.com",
+        "dni": "56781234",
+        "status": 1
+    },
+    {
+        "apellido": "Pérez",
+        "direccion": "Calle Falsa 123",
+        "id": 1,
+        "telefono": 123456789,
+        "nombre": "Juan",
+        "correoElectronico": "juan@example.com",
+        "dni": "12345678",
+        "status": 0
+    },
+    {
+        "apellido": "Gómez",
+        "direccion": "Avenida Siempre Viva 456",
+        "id": 1,
+        "telefono": 987654321,
+        "nombre": "Ana",
+        "correoElectronico": "ana@example.com",
+        "dni": "87654321",
+        "status": 1
+    }
+]

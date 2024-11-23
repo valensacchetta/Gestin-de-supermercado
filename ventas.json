@@ -1,0 +1,38 @@
+{"ventas": [{
+    "fecha": "2024-11-23T13:47:27.8161589",
+    "cliente": {
+        "apellido": "Pérez",
+        "direccion": "Calle Falsa 123",
+        "id": 1,
+        "telefono": 123456789,
+        "nombre": "Juan",
+        "correoElectronico": "juan@example.com",
+        "dni": "12345678",
+        "status": 1
+    },
+    "listaProductos": [
+        {
+            "precio": 10,
+            "unidades": 5,
+            "categoria": "Categoria 1",
+            "id": 1,
+            "nombre": "Producto A"
+        },
+        {
+            "precio": 20,
+            "unidades": 3,
+            "categoria": "Categoria 2",
+            "id": 2,
+            "nombre": "Producto B"
+        },
+        {
+            "precio": 15,
+            "unidades": 2,
+            "categoria": "Categoria 1",
+            "id": 3,
+            "nombre": "Producto C"
+        }
+    ],
+    "total": 45,
+    "idVenta": 1
+}]}

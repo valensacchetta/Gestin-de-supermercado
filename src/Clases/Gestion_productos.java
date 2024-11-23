@@ -1,78 +1,97 @@
 package Clases;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Scanner;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
 
 public class Gestion_productos {
-    private Map<String, Integer> listaDeProductos;
+    private Map<String, Producto> listaDeProductos; // Mapa con el nombre como clave
+    private final String archivoProductos = "productos.json";         // Ruta del archivo para guardar/cargar
 
     public Gestion_productos() {
-        listaDeProductos = new HashMap();
+        listaDeProductos = new HashMap<>();
+        cargarDesdeArchivo(); // Carga los productos al inicializar
     }
 
-    public void AddProducto(Producto producto) {
-        listaDeProductos.add(producto);
-        System.out.println("Se guardó el producto correctamente");
+    // Métodos para manejar productos
+    public void addProducto(Producto producto) {
+        if (!listaDeProductos.containsKey(producto.getNombre())) {
+            listaDeProductos.put(producto.getNombre(), producto);
+            System.out.println("Producto agregado correctamente.");
+            guardarEnArchivo(); // Guarda automáticamente
+        } else {
+            System.out.println("Ya existe un producto con el nombre: " + producto.getNombre());
+        }
     }
 
-    public void deleteProducto(Producto producto) {
-        listaDeProductos.remove(producto);
-    }
-
-    public void deleteProducto(int index) {
-        listaDeProductos.remove(index);
+    public void deleteProducto(String nombre) {
+        if (listaDeProductos.remove(nombre) != null) {
+            System.out.println("Producto eliminado correctamente.");
+            guardarEnArchivo(); // Guarda automáticamente
+        } else {
+            System.out.println("No se encontró un producto con el nombre: " + nombre);
+        }
     }
 
     public void mostrarLista() {
-        for (int i = 0; i < listaDeProductos.size(); i++) {
-            Producto p = listaDeProductos.get(i);
-            System.out.println(i + " - " + p.getNombre() + " | Precio: " + p.getPrecio() + " | Unidades: " + p.getUnidades() + " | Categoría: " + p.getCategoria());
+        if (listaDeProductos.isEmpty()) {
+            System.out.println("La lista de productos está vacía.");
+            return;
+        }
+        for (Producto producto : listaDeProductos.values()) {
+            System.out.println(producto);
         }
     }
 
-    public boolean buscarProducto(Producto producto) {
-        return listaDeProductos.contains(producto);
+    public Producto buscarProductoPorNombre(String nombre) {
+        return listaDeProductos.get(nombre);
     }
 
-    public Producto buscarProductoPorID(int id) {
-        for (Producto producto : listaDeProductos) {
-            if (producto.getId() == id) {
-                return producto;
-            }
+    // Serialización
+    private void guardarEnArchivo() {
+        JSONArray jsonArray = new JSONArray();
+        for (Producto producto : listaDeProductos.values()) {
+            jsonArray.put(producto.toJSON());
         }
-        return null;
-    }
-
-    // Nuevo método para ordenar productos alfabéticamente por nombre
-    public void ordenarProductosPorNombre() {
-        listaDeProductos.sort(Comparator.comparing(Producto::getNombre));
-        System.out.println("Lista de productos ordenada alfabéticamente por nombre.");
-    }
-
-    public void editarProducto(int id, String nuevoNombre, double nuevoPrecio, int nuevasUnidades, String nuevaCategoria) {
-        Producto producto = buscarProductoPorID(id); // Buscar el producto por ID
-        if (producto != null) {
-            // Actualizar los atributos del producto
-            if (nuevoNombre != null && !nuevoNombre.isEmpty()) {
-                producto.setNombre(nuevoNombre);
-            }
-            if (nuevoPrecio >= 0) {
-                producto.setPrecio(nuevoPrecio);
-            }
-            if (nuevasUnidades >= 0) {
-                producto.setUnidades(nuevasUnidades);
-            }
-            if (nuevaCategoria != null && !nuevaCategoria.isEmpty()) {
-                producto.setCategoria(nuevaCategoria);
-            }
-            System.out.println("Producto editado correctamente.");
-        } else {
-            System.out.println("Producto con ID " + id + " no encontrado.");
+        try (FileWriter file = new FileWriter(archivoProductos)) {
+            file.write(jsonArray.toString(4));
+            System.out.println("Productos guardados en: " + archivoProductos);
+        } catch (IOException e) {
+            System.out.println("Error al guardar el archivo: " + e.getMessage());
         }
     }
 
+    // Deserialización
+    private void cargarDesdeArchivo() {
+        File archivo = new File(archivoProductos);
+        if (!archivo.exists()) {
+            System.out.println("El archivo no existe. Se creará uno nuevo cuando se guarde.");
+            return;
+        }
+        try (Scanner scanner = new Scanner(new FileReader(archivoProductos))) {
+            StringBuilder jsonString = new StringBuilder();
+            while (scanner.hasNextLine()) {
+                jsonString.append(scanner.nextLine());
+            }
+            JSONArray jsonArray = new JSONArray(jsonString.toString());
+            listaDeProductos.clear();
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                Producto producto = new Producto(jsonObject);
+                listaDeProductos.put(producto.getNombre(), producto);
+            }
+            System.out.println("Productos cargados desde: " + archivoProductos);
+        } catch (IOException e) {
+            System.out.println("Error al cargar el archivo: " + e.getMessage());
+        }
+    }
+
+    /*
     public void editarProducto() {
         if (listaDeProductos.isEmpty()) {
             System.out.println("No hay productos en la lista para editar.");
@@ -140,5 +159,9 @@ public class Gestion_productos {
 
         System.out.println("Producto editado correctamente.");
     }
+
+     */
+
+
 
 }

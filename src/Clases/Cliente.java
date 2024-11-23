@@ -17,7 +17,7 @@ public class Cliente extends Persona {
 
     //Constructores
     public Cliente(String nombre,String apellido, String dni, String direccion, String correoElectronico, int telefono) {
-        super(nombre,apellido,dni);
+        super(dni,nombre,apellido);
         id=++contador;
         this.status=1;
         this.direccion = direccion;
