@@ -15,7 +15,7 @@ public class Gestion_ventas {
 
     public Gestion_ventas() {
         listaDeVentas = new ArrayList<>();
-        cargarVentasDesdeArchivo();  // Cargar ventas cuando se cree una instancia de la clase
+        cargarVentasDesdeArchivo();  // Cargar ventas cuando se cree una instancia
     }
 
     // Metodo para agregar una venta
@@ -35,7 +35,7 @@ public class Gestion_ventas {
     }
 
 
-    // Metodo para mostrar todas las ventas
+    //mostrar todas las ventas
     public void mostrarVentas() {
         if (listaDeVentas.isEmpty()) {
             System.out.println("No hay ventas registradas.");
@@ -46,7 +46,7 @@ public class Gestion_ventas {
         }
     }
 
-    // Metodo para buscar una venta por ID
+    //buscar una venta por ID
     public Venta buscarVentaPorID(int idVenta) {
         for (Venta venta : listaDeVentas) {
             if (venta.getIdVenta() == idVenta) {
@@ -56,12 +56,12 @@ public class Gestion_ventas {
         throw new ExcepcionVentaNoEncontrada("Venta con ID " + idVenta + " no encontrada.");
     }
 
-    // Metodo para calcular el total vendido
+    //calcular el total vendido hasta el momento
     public double calcularTotalVendido() {
         return listaDeVentas.stream().mapToDouble(Venta::getTotal).sum();
     }
 
-    // Metodo para guardar las ventas en un archivo JSON
+    // guardar las ventas en un archivo JSON
     public void guardarVentasEnArchivo() {
         JSONArray ventasArray = new JSONArray();
         for (Venta venta : listaDeVentas) {
@@ -79,7 +79,7 @@ public class Gestion_ventas {
         }
     }
 
-    // Metodo para cargar las ventas desde un archivo JSON
+    //cargar las ventas desde un archivo JSON
     public void cargarVentasDesdeArchivo() {
         File archivo = new File(archivoJson);
         if (archivo.exists()) {

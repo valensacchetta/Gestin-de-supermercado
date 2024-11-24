@@ -41,6 +41,16 @@ public class Gestion_empleados {
         return empleado;
     }
 
+    public void mostrarEmpleados() {
+        if (empleados.isEmpty()) {
+            System.out.println("No hay empleados registrados.");
+        } else {
+            for (Empleado empleado : empleados.values()) {
+                System.out.println(empleado);
+            }
+        }
+    }
+
     // Metodo para eliminar un empleado. A este lo eliminamos definitivamente ya que consideramos que en caso de que volviese, haria un nuevo contrato.
     public void eliminarEmpleado(String dni) {
         if (empleados.containsKey(dni)) {
