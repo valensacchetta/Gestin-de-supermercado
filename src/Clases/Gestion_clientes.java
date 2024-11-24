@@ -31,6 +31,9 @@ public class Gestion_clientes {
         if (cliente == null) {
             throw new ExcepcionClienteNoEncontrado("Cliente con DNI " + dni + " no encontrado.");
         }
+        if (cliente.getStatus()==0){
+            throw new ExcepcionClienteNoEncontrado("Cliente dado de baja.");
+        }
         return cliente;
     }
 
@@ -39,9 +42,10 @@ public class Gestion_clientes {
         if (cliente == null || cliente.getDni() == null || cliente.getDni().trim().isEmpty()) {
             throw new IllegalArgumentException("El cliente o su DNI no pueden ser nulos.");
         }
-        if (clientes.containsKey(cliente.getDni())) {
+        if (clientes.containsKey(cliente.getDni()) && clientes.get(cliente.getDni()).getStatus() != 0) {
             throw new IllegalStateException("El cliente con DNI " + cliente.getDni() + " ya está registrado.");
         }
+        cliente.setStatus(1); // Asegurar que el cliente se agrega como activo
         clientes.put(cliente.getDni(), cliente);
         guardarClientesEnArchivo();
         System.out.println("Cliente agregado correctamente.");
@@ -50,15 +54,19 @@ public class Gestion_clientes {
     // Dar de baja a un cliente
     public void eliminarCliente(String dni) {
         if (dni == null || dni.trim().isEmpty()) {
-            throw new IllegalArgumentException("El DNI no puede ser nulo o vacío.");
+            throw new IllegalArgumentException("El DNI no puede ser nulo");
         }
         Cliente cliente = clientes.get(dni);
         if (cliente == null) {
-            throw new ExcepcionClienteNoEncontrado("Cliente con DNI " + dni + " no encontrado.");
+            throw new ExcepcionClienteNoEncontrado("Cliente con DNI " + dni + " no encontrado");
         }
-        cliente.setStatus(0); // Cambiar estado a baja
+        if (cliente.getStatus() == 0) {
+            System.out.println("Este cliente ya está dado de baja");
+            return;
+        }
+        cliente.setStatus(0); // Cambiar estado a baja (0 para inactivo)
         guardarClientesEnArchivo();
-        System.out.println("Cliente dado de baja correctamente.");
+        System.out.println("Cliente dado de baja correctamente");
     }
 
     // Mostrar todos los clientes
@@ -66,9 +74,11 @@ public class Gestion_clientes {
         if (clientes.isEmpty()) {
             System.out.println("No hay clientes registrados.");
         } else {
-            System.out.println("Lista de clientes:");
+            System.out.println("Lista de clientes activos:");
             for (Cliente cliente : clientes.values()) {
-                System.out.println(cliente);
+                if (cliente.getStatus() == 1) { // Solo mostrar activos
+                    System.out.println(cliente);
+                }
             }
         }
     }

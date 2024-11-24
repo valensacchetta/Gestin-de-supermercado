@@ -6,19 +6,18 @@ import org.json.JSONObject;
 public class Empleado extends Persona{
 
     //Atributos: id, nombre(super), cargo, salario
-
-    private static int id;
+    private static int contador=0;
+    private int id;
     private String cargo;
     private double salario;
 
-    ///Constructores
+    //Constructores
 
-    public Empleado(){}
-    public Empleado(String dni, String nombre, String apellido, String cargo, double salario) {
+    public Empleado(String dni, String nombre, String apellido, String cargo, double salarioHora) {
         super(dni, nombre, apellido);
         this.cargo = cargo;
-        this.salario = salario;
-        id++;
+        this.salario = salarioHora;
+        this.id=++contador;
     }
 
     public Empleado(JSONObject jsonEmpleado) {
@@ -32,7 +31,7 @@ public class Empleado extends Persona{
         }
     }
 
-    public static int getId() {
+    public int getId() {
         return id;
     }
 
@@ -40,16 +39,15 @@ public class Empleado extends Persona{
         return cargo;
     }
 
-    public double getSalario() {
+    public double getSalarioHora() {
         return salario;
     }
 
     @Override
     public String toString() {
-        return "Empleado{" +
+        return super.toString() +
                 "cargo='" + cargo + '\'' +
-                ", salario=" + salario +
-                '}';
+                ", salario=" + salario;
     }
 
     public double calcularSalario() { //MODIFICARSE SEGUN EMPLEADO
