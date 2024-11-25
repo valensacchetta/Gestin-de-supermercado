@@ -26,3 +26,17 @@ public class Gestion_clientes {
         System.out.println("Cliente dado de baja correctamente");
     }
 }
+public Cliente buscarClientePorID(int id) {
+    try {
+        for (Cliente cliente : listaClientes) {
+            if (cliente.getId() == id) {
+                return cliente;
+            }
+        }
+        throw new Exception("Cliente no encontrado");
+    } catch (Exception e) {
+        System.out.println("Error al buscar cliente: " + e.getMessage());
+        return null;
+    }
+}
+
