@@ -1,5 +1,6 @@
 package Clases;
 
+import Interfaces.Serializable;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -8,8 +9,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-public class Venta {
+public class Venta implements Serializable {
     //Atributos: id, fecha, cliente, listaProductos, total
     private int idVenta;
     private static int contador=0;
@@ -89,6 +91,7 @@ public class Venta {
     }
 
     // Metodo para serialización a JSON
+    @Override
     public JSONObject toJSON() {
         JSONObject jsonObject = new JSONObject();
         try {
@@ -107,4 +110,16 @@ public class Venta {
         return jsonObject;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Venta venta = (Venta) o;
+        return idVenta == venta.idVenta && Double.compare(total, venta.total) == 0 && Objects.equals(fecha, venta.fecha) && Objects.equals(cliente, venta.cliente) && Objects.equals(listaProductos, venta.listaProductos);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idVenta, fecha, cliente, listaProductos, total);
+    }
 }

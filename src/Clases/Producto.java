@@ -1,11 +1,12 @@
 package Clases;
 
+import Interfaces.Serializable;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Objects;
 
-public class Producto {
+public class Producto implements Serializable {
     private static int contadorId = 0; // Contador para asignar IDs únicos
     private int id; // Ahora es un atributo de instancia
     private String nombre;
@@ -74,6 +75,7 @@ public class Producto {
     }
 
     // Método para convertir a JSON
+    @Override
     public JSONObject toJSON() {
         JSONObject producto = new JSONObject();
         try {

@@ -147,7 +147,7 @@ public class Main {
         gestionClientes.mostrarClientes();
 
          */
-
+        /*
         // Crear algunos productos
         Producto producto1 = new Producto("Producto A", 10.0, 5, "Categoria 1");
         Producto producto2 = new Producto("Producto B", 20.0, 3, "Categoria 2");
@@ -173,5 +173,9 @@ public class Main {
 
         // Calcular el total vendido
         System.out.println("Total vendido: " + gestionVentas.calcularTotalVendido());
+
+         */
+
+        Gestion_supermercado gest = new Gestion_supermercado();
     }
 }

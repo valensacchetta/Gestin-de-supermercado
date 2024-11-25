@@ -7,14 +7,16 @@ import org.json.JSONObject;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Gestion_ventas {
-    private List<Venta> listaDeVentas;
+    private Set<Venta> listaDeVentas;
     private final String archivoJson = "ventas.json";
 
     public Gestion_ventas() {
-        listaDeVentas = new ArrayList<>();
+        listaDeVentas = new HashSet<>();
         cargarVentasDesdeArchivo();  // Cargar ventas cuando se cree una instancia
     }
 
