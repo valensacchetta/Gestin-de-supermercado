@@ -62,6 +62,29 @@ public class Gestion_ventas {
     public double calcularTotalVendido() {
         return listaDeVentas.stream().mapToDouble(Venta::getTotal).sum();
     }
+    
+    public Cliente buscarClientePorID(int id) {
+    try {
+        for (Cliente cliente : listaClientes) {
+            if (cliente.getId() == id) {
+                return cliente;
+            }
+        }
+        throw new Exception("Cliente no encontrado");
+    } catch (Exception e) {
+        System.out.println("Error al buscar cliente: " + e.getMessage());
+        return null;
+    }
+    }
+    
+    public Cliente obtenerCliente(int indice) {
+    try {
+        return listaClientes.get(indice);
+    } catch (IndexOutOfBoundsException e) {
+        System.out.println("Índice fuera de rango: " + e.getMessage());
+        return null;
+    }
+}
 
     // guardar las ventas en un archivo JSON
     public void guardarVentasEnArchivo() {
