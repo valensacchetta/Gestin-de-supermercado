@@ -34,5 +34,17 @@ public abstract class Persona {
                 ", apellido='" + Apellido + '\'' +
                 '}';
     }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Persona persona = (Persona) o;
+        return Objects.equals(dni, persona.dni) && Objects.equals(nombre, persona.nombre) && Objects.equals(Apellido, persona.Apellido);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(dni, nombre, Apellido);
+    }
 
 }
