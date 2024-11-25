@@ -38,5 +38,14 @@ public Cliente buscarClientePorID(int id) {
         System.out.println("Error al buscar cliente: " + e.getMessage());
         return null;
     }
+public Cliente obtenerCliente(int indice) {
+    try {
+        return listaClientes.get(indice);
+    } catch (IndexOutOfBoundsException e) {
+        System.out.println("Índice fuera de rango: " + e.getMessage());
+        return null;
+    }
+}
+
 }
 
