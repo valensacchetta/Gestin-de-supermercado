@@ -18,4 +18,5 @@ public class Main {
         System.out.println("\nDespués de ordenar:");
         gestion.mostrarLista();
     }
+    //TODO FUNCIONA CORRECTAMENTE
 }
