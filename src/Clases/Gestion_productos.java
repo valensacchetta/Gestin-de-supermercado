@@ -49,4 +49,14 @@ public class Gestion_productos {
         listaDeProductos.sort(Comparator.comparing(Producto::getNombre));
         System.out.println("Lista de productos ordenada alfabéticamente por nombre.");
     }
+    
+
+public void eliminarProducto(int indice) {
+        try {
+            Producto productoEliminado = listaProductos.remove(indice);
+            System.out.println("Producto eliminado: " + productoEliminado);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Error: No existe un producto en ese índice.");
+        }
+    }
 }
