@@ -29,6 +29,19 @@ public class Empleado extends Persona{
     public double getSalario() {
         return salario;
     }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Empleado empleado = (Empleado) o;
+        return Double.compare(salario, empleado.salario) == 0 && Objects.equals(cargo, empleado.cargo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cargo, salario);
+    }
 
     @Override
     public String toString() {
