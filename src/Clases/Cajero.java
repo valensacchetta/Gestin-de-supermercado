@@ -100,6 +100,19 @@ public class Cajero extends Empleado {
         int telefono = sc.nextInt();
         gestionClientes.agregarCliente(new Cliente(nombre,apellido,dni,direccion,email,telefono)); //Cliente guardado en la lista de clientes
     }
+    
+       @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cajero cajero = (Cajero) o;
+        return transaccionesRealizadas == cajero.transaccionesRealizadas && Objects.equals(listaProductos, cajero.listaProductos);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(transaccionesRealizadas, listaProductos);
+    }
 
 
     @Override
