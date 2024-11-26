@@ -246,10 +246,14 @@ public class Cajero extends Empleado {
                 }
                 System.out.println("Cantidad?");
                 cant = sc.nextInt();
+                sc.nextLine();
                 if (cant <= 0) {
                     throw new IllegalArgumentException("La cantidad ingresada debe ser mayor que cero.");
                 }
-                sc.nextLine();
+                if((producto.getUnidades()-cant)<0){
+                    throw new IllegalArgumentException("No hay tantas unidades del producto elegido");
+                }
+                producto.setUnidades(producto.getUnidades()-cant);
                 carrito.agregarProducto(producto, cant);
             }
         } while (!prod.equals("0"));
@@ -273,10 +277,14 @@ public class Cajero extends Empleado {
                 }
                 System.out.println("Cantidad? :");
                 cant = sc.nextInt();
+                sc.nextLine();
                 if (cant <= 0) {
                     throw new IllegalArgumentException("La cantidad ingresada debe ser mayor que cero.");
                 }
-                sc.nextLine();
+                if((producto.getUnidades()-cant)<0){
+                    throw new IllegalArgumentException("No hay tantas unidades del producto elegido");
+                }
+                producto.setUnidades(producto.getUnidades()-cant);
                 carrito.agregarProducto(gesProd.buscarProductoPorNombre(prod),cant);
             }
         }while (!prod.equals("0"));

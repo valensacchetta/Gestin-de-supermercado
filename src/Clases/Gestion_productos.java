@@ -11,8 +11,8 @@ import java.io.IOException;
 import java.util.*;
 
 public class Gestion_productos {
-    private Map<String, Producto> listaDeProductos; // Mapa con el nombre como clave
-    private final String archivoProductos = "productos.json";         // Ruta del archivo para guardar/cargar
+    private static Map<String, Producto> listaDeProductos; // Mapa con el nombre como clave
+    private final String archivoProductos = "productos.json"; // Ruta del archivo para guardar/cargar
 
     public Gestion_productos() {
         listaDeProductos = new HashMap<>();

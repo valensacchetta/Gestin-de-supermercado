@@ -91,6 +91,13 @@ public class Gestion_supermercado {
         Cajero cajero = new Cajero(empleado.getNombre(), empleado.getApellido(), empleado.getDni(), empleado.getCargo(), empleado.getSalarioHora());
         System.out.println("Bienvenido");
         System.out.println(empleado.getNombre() + " " + empleado.getApellido());
-        cajero.mostrarMenuCajero();
+        boolean continuar = true;
+        while (continuar) {
+            try{
+                cajero.mostrarMenuCajero();
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
