@@ -122,17 +122,4 @@ public class Venta implements Serializable {
         }
         return jsonObject;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Venta venta = (Venta) o;
-        return idVenta == venta.idVenta && Double.compare(total, venta.total) == 0 && Objects.equals(fecha, venta.fecha) && Objects.equals(cliente, venta.cliente) && Objects.equals(listaProductos, venta.listaProductos);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(idVenta, fecha, cliente, listaProductos, total);
-    }
 }
