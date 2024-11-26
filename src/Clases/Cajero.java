@@ -285,6 +285,7 @@ public class Cajero extends Empleado {
                     throw new IllegalArgumentException("No hay tantas unidades del producto elegido");
                 }
                 producto.setUnidades(producto.getUnidades()-cant);
+                gesProd.addProducto(producto);
                 carrito.agregarProducto(gesProd.buscarProductoPorNombre(prod),cant);
             }
         }while (!prod.equals("0"));

@@ -24,14 +24,23 @@ public class Gestion_productos {
         if (producto == null || producto.getNombre() == null || producto.getNombre().trim().isEmpty()) {
             throw new IllegalArgumentException("El producto o su nombre no pueden ser nulos.");
         }
-        if (!listaDeProductos.containsKey(producto.getNombre())) {
-            listaDeProductos.put(producto.getNombre(), producto);
+
+        if (listaDeProductos.containsKey(producto.getNombre())) {
+            Producto productoExistente = listaDeProductos.get(producto.getNombre());
+            if (productoExistente.getUnidades() != producto.getUnidades()) {
+                listaDeProductos.put(producto.getNombre(), producto); // Reemplaza el producto que ya existe
+                guardarEnArchivo();
+                System.out.println("Producto reemplazado con las nuevas unidades.");
+            } else {
+                System.out.println("Ya existe un producto con el mismo nombre y cantidad.");
+            }
+        } else {
+            listaDeProductos.put(producto.getNombre(), producto); // Agregar el nuevo producto
             guardarEnArchivo();
             System.out.println("Producto agregado correctamente.");
-        } else {
-            System.out.println("Ya existe un producto con el nombre: " + producto.getNombre());
         }
     }
+
 
     public void deleteProducto(String nombre) {
         if (nombre == null || nombre.trim().isEmpty()) {
