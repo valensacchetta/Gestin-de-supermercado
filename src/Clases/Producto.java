@@ -74,7 +74,7 @@ public class Producto implements Serializable {
         this.categoria = categoria;
     }
 
-    // Método para convertir a JSON
+    // Metodo para convertir a JSON
     @Override
     public JSONObject toJSON() {
         JSONObject producto = new JSONObject();

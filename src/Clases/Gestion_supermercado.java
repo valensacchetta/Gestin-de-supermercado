@@ -40,10 +40,16 @@ public class Gestion_supermercado {
 
         // Busca al administrador por su DNI
         if (dni.equals(admin.getDni())) { // DNI del administrador predeterminado
-            System.out.println("Bienvenido" + admin.getNombre() + admin.getApellido());
-            LocalDateTime horaInicio = LocalDateTime.now();
-            System.out.println("Inicio de sesión exitoso. Hora: " + horaInicio);
-            admin.gestionarSistema(gestionEmpleados, gestionProductos, gestionVentas, gestionClientes);
+            System.out.println("Ingrese la clave");
+            String clave = scanner.nextLine();
+            if (clave.equals(admin.cargarClaveDesdeArchivo()) && clave != null) {
+                System.out.println("Bienvenido" +" "+ admin.getNombre() +" "+ admin.getApellido());
+                LocalDateTime horaInicio = LocalDateTime.now();
+                System.out.println("Inicio de sesión exitoso. Hora: " + horaInicio);
+                admin.gestionarSistema(gestionEmpleados, gestionProductos, gestionVentas, gestionClientes);
+            }else {
+                System.out.println("Clave incorrecta, acceso denegado.");
+            }
         } else {
             System.out.println("DNI incorrecto. Acceso denegado.");
         }

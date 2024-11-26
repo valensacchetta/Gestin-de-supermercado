@@ -1,15 +1,36 @@
 package Clases;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Administrador extends Persona {
 
     private static int contador = 0; // Autoincremental para ID unico
     private int id;
+    private final String archivoClave = "Clave.txt";
 
     public Administrador(String dni, String nombre, String apellido) {
         super(dni, nombre, apellido);
         this.id = ++contador;
+    }
+
+    public String cargarClaveDesdeArchivo() {
+        File archivo = new File(archivoClave);
+        if (!archivo.exists()) {
+            System.out.println("El archivo de clave no existe.");
+            return null;
+        }
+        try (Scanner scanner = new Scanner(new FileReader(archivo))) {
+            return scanner.nextLine();
+        } catch (IOException e) {
+            System.out.println("Error al cargar la clave: " + e.getMessage());
+            return null;
+        }
     }
 
     public void gestionarSistema(Gestion_empleados gestionEmpleados, Gestion_productos gestionProductos, Gestion_ventas gestionVentas, Gestion_clientes gestionClientes) {
@@ -59,7 +80,7 @@ public class Administrador extends Persona {
             System.out.println("2. Dar de baja cliente");
             System.out.println("3. Buscar cliente por DNI");
             System.out.println("4. Mostrar clientes activos");
-            System.out.println("5. Salir");
+            System.out.println("5. Volver");
             int opcion = scanner.nextInt();
             scanner.nextLine();
 
