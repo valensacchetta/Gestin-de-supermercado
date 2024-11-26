@@ -2,7 +2,6 @@ package Clases;
 import Excepciones.ExcepcionClienteNoEncontrado;
 import Excepciones.ExcepcionProductoNoEncontrado;
 import Excepciones.ExcepcionVentaInvalida;
-import org.json.JSONObject;
 
 import java.util.*;
 import java.time.LocalDateTime;
@@ -12,7 +11,7 @@ public class Cajero extends Empleado {
     private List<Producto> listaProductos;
 
 
-    public Cajero(String dni, String nombre, String apellido, String cargo, double salario) {
+    public Cajero( String nombre, String apellido,String dni, String cargo, double salario) {
         super(dni, nombre, apellido, cargo, salario);
         this.transaccionesRealizadas = 0; // Inicia en 0
         this.listaProductos = new LinkedList<>();

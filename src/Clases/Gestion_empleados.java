@@ -29,6 +29,15 @@ public class Gestion_empleados {
             System.out.println("El empleado con DNI " + empleado.getDni() + " ya está registrado.");
         }
     }
+    public void agregarEmpleado(Cajero empleado) {
+        if (!empleados.containsKey(empleado.getDni())) {
+            empleados.put(empleado.getDni(), empleado);
+            guardarEmpleadosEnArchivo();
+            System.out.println("Empleado agregado correctamente.");
+        } else {
+            System.out.println("El empleado con DNI " + empleado.getDni() + " ya está registrado.");
+        }
+    }
 
     public Empleado buscarEmpleadoPorDNI(String dni) {
         if (dni == null || dni.trim().isEmpty()) {
@@ -69,16 +78,16 @@ public class Gestion_empleados {
         }
         try (FileWriter file = new FileWriter(archivoJson)) {
             file.write(arrayEmpleados.toString(4));
-            System.out.println("Clientes guardados en " + archivoJson);
+            System.out.println("Empleado guardado en " + archivoJson);
         } catch (IOException e) {
-            System.err.println("Error al guardar los clientes: " + e.getMessage());
+            System.err.println("Error al guardar el empleado: " + e.getMessage());
         }
     }
 
     private void cargarEmpleadosDesdeArchivo() {
             File file = new File(archivoJson);
             if (!file.exists()) {
-                System.out.println("El archivo de clientes no existe, se creará uno nuevo");
+                System.out.println("El archivo de empleados no existe, se creará uno nuevo luego");
                 return;
             }
             try {
@@ -89,9 +98,9 @@ public class Gestion_empleados {
                     Empleado empleado = new Empleado(jsonEmpleado);
                     empleados.put(empleado.getDni(), empleado);
                 }
-                System.out.println("Clientes cargados desde el archivo");
+                System.out.println("Empleados cargados desde el archivo");
             } catch (Exception e) {
-                System.err.println("Error al cargar los clientes: " + e.getMessage());
+                System.err.println("Error al cargar los Empleados: " + e.getMessage());
             }
     }
 

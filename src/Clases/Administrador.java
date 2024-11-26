@@ -1,8 +1,5 @@
 package Clases;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -63,6 +60,7 @@ public class Administrador extends Persona {
                 case 5:
                     System.out.println("Saliendo del sistema...");
                     continuar = false;
+                    System.exit(0);
                     break;
                 default:
                     System.out.println("Opcion no valida, intente de nuevo.");
@@ -154,8 +152,11 @@ public class Administrador extends Persona {
                     System.out.println("Ingrese el salario:");
                     double salario = scanner.nextDouble();
                     scanner.nextLine();
-
-                    gestionEmpleados.agregarEmpleado(new Empleado(dni, nombre, apellido, cargo, salario));
+                    if(cargo.equalsIgnoreCase("cajero")){ //aniade como cajero
+                        gestionEmpleados.agregarEmpleado(new Cajero(apellido, dni, nombre, cargo,salario));
+                    }else {
+                        gestionEmpleados.agregarEmpleado(new Empleado(dni, nombre, apellido, cargo, salario));
+                    }
                     break;
                 case 2:
                     System.out.println("Ingrese el DNI del empleado a eliminar:");

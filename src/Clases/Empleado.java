@@ -56,7 +56,7 @@ public class Empleado extends Persona{
 
     @Override
     public JSONObject toJSON() {
-        JSONObject jsonObject = super.toJSON(); // Llamar al método toJSON de la clase padre
+        JSONObject jsonObject = super.toJSON(); // Llamar al metodo toJSON de la clase padre
         try {
             jsonObject.put("id", id);
             jsonObject.put("cargo", cargo);
