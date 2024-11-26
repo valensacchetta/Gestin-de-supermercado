@@ -2,6 +2,104 @@
     "precio": 0.9,
     "unidades": 20,
     "categoria": "Lácteos",
-    "id": 2,
+    "id": 1,
     "nombre": "Leche"
-}]
+},
+    {
+        "precio": 2.0,
+        "unidades": 50,
+        "categoria": "Lácteos",
+        "id": 2,
+        "nombre": "Yogur"
+    },
+    {
+        "precio": 3.0,
+        "unidades": 10,
+        "categoria": "Lácteos",
+        "id": 3,
+        "nombre": "Queso"
+    },
+    {
+        "precio": 1.9,
+        "unidades": 15,
+        "categoria": "Lácteos",
+        "id": 4,
+        "nombre": "Manteca"
+    },
+    {
+        "precio": 0.5, 
+        "unidades": 100, 
+        "categoria": "Alimentos", 
+        "id": 5, 
+        "nombre": "Sal"
+    },
+    {
+        "precio": 0.7, 
+        "unidades": 80,
+        "categoria": "Alimentos",
+        "id": 6, 
+        "nombre": "Azúcar"
+    },
+    {
+        "precio": 0.6, 
+        "unidades": 120, 
+        "categoria": "Alimentos", 
+        "id": 7, 
+        "nombre": "Arroz"
+    },
+    {
+        "precio": 0.4, 
+        "unidades": 90, 
+        "categoria": "Alimentos", 
+        "id": 8, 
+        "nombre": "Fideos"
+    },
+    {
+        "precio": 1.2, 
+        "unidades": 25, 
+        "categoria": "Bebidas", 
+        "id": 9, 
+        "nombre": "Jugo de Naranja"
+    },
+    {
+        "precio": 0.8, 
+        "unidades": 60, 
+        "categoria": "Bebidas", 
+        "id": 10, 
+        "nombre": "Té"
+    },
+    {
+        "precio": 1.8, 
+        "unidades": 35, 
+        "categoria": "Bebidas", 
+        "id": 11, 
+        "nombre": "Café"
+    },
+    {
+        "precio": 1.1, 
+        "unidades": 45, 
+        "categoria": "Limpieza", 
+        "id": 12, 
+        "nombre": "Jabón"
+    },
+    {
+        "precio": 1.6, 
+        "unidades": 30, 
+        "categoria": "Limpieza", 
+        "id": 13, 
+        "nombre": "Detergente"
+    },
+    {
+        "precio": 1.5, 
+        "unidades": 30, 
+        "categoria": "Panadería", 
+        "id": 14, 
+        "nombre": "Pan"
+    },
+    {
+        "precio": 3.0, 
+        "unidades": 40, 
+        "categoria": "Panadería", 
+        "id": 15, 
+        "nombre": "Sandwich de jamón y queso"}
+]
