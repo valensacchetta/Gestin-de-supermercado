@@ -78,23 +78,19 @@ public class Gestion_supermercado {
         System.out.println("Inicio de sesion exitoso. Hora: " + horaInicio);
         System.out.println("Bienvenido, " + empleado.getNombre() + " " + empleado.getApellido());
 
-        if (empleado instanceof Cajero) {
-            iniciarSesionCajero((Cajero) empleado);
+        if (empleado instanceof Cajero || empleado.getCargo().equalsIgnoreCase("cajero")) {
+            iniciarSesionCajero(empleado);
         } else {
             System.out.println("No tiene tareas específicas asignadas.");
             System.exit(0);
         }
     }
 
-    private static void iniciarSesionCajero(Cajero cajero) {
+    private static void iniciarSesionCajero(Empleado empleado) {
         Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Cajero: " + cajero.getNombre() + " " + cajero.getApellido());
-        System.out.println("Ingrese 'cerrar' para cerrar la caja:");
-        String comando = scanner.nextLine();
-
-        if (comando.equalsIgnoreCase("cerrar")) {
-            cajero.cerrarCaja();
-        }
+        Cajero cajero = new Cajero(empleado.getNombre(), empleado.getApellido(), empleado.getDni(), empleado.getCargo(), empleado.getSalarioHora());
+        System.out.println("Bienvenido");
+        System.out.println(empleado.getNombre() + " " + empleado.getApellido());
+        cajero.mostrarMenuCajero();
     }
 }

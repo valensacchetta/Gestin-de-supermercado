@@ -43,15 +43,15 @@ public class Empleado extends Persona{
         return salario;
     }
 
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
+
     @Override
     public String toString() {
         return super.toString() +
                 "cargo='" + cargo + '\'' +
                 ", salario=" + salario;
-    }
-
-    public double calcularSalario() { //MODIFICARSE SEGUN EMPLEADO
-        return salario;
     }
 
     @Override

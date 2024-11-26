@@ -9,17 +9,72 @@ import java.time.LocalDateTime;
 public class Cajero extends Empleado {
     private int transaccionesRealizadas;
     private List<Producto> listaProductos;
+    private int transaccionesMax;
 
 
     public Cajero( String nombre, String apellido,String dni, String cargo, double salario) {
         super(dni, nombre, apellido, cargo, salario);
-        this.transaccionesRealizadas = 0; // Inicia en 0
+        this.transaccionesRealizadas = 0;
+        this.transaccionesMax =0;   // Inicia en 0
         this.listaProductos = new LinkedList<>();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Cajero cajero)) return false;
+        if (!super.equals(o)) return false;
+        return transaccionesRealizadas == cajero.transaccionesRealizadas;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), transaccionesRealizadas);
     }
 
     public int getTransaccionesRealizadas() {
         return transaccionesRealizadas;
     }
+
+    public void mostrarMenuCajero() {
+        Scanner scanner = new Scanner(System.in);
+        boolean continuar = true;
+
+        while (continuar) {
+            System.out.println("\nCajero: " + getNombre() + " " + getApellido());
+            System.out.println("Seleccione una opción:");
+            System.out.println("1. Realizar nueva transacción");
+            System.out.println("2. Agregar producto al carrito");
+            System.out.println("3. Eliminar producto del carrito");
+            System.out.println("4. Mostrar productos en el carrito");
+            System.out.println("5. Salir y cerrar sesión");
+
+            int opcion = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opcion) {
+                case 1:
+                    nuevaTransaccion();
+                    break;
+                case 2:
+                    agregarProductoAlCarrito();
+                    break;
+                case 3:
+                    eliminarProductoDelCarrito();
+                    break;
+                case 4:
+                    mostrarCarrito();
+                    break;
+                case 5:
+                    cerrarCaja(); // Registra el cierre y termina el programa
+                    continuar = false;
+                    break;
+                default:
+                    System.out.println("Opción no válida, intente de nuevo.");
+            }
+        }
+    }
+
 
     public void nuevaTransaccion() {
         Scanner sc = new Scanner(System.in);
@@ -66,6 +121,7 @@ public class Cajero extends Empleado {
         System.out.println(nuevaVenta);
         this.transaccionesRealizadas++;
     }
+
     public void transaccionSinCliente(){
         // Crear venta sin cliente registrado
         Carrito carrito = nuevoCarritoSinCliente();
@@ -99,20 +155,70 @@ public class Cajero extends Empleado {
         int telefono = sc.nextInt();
         gestionClientes.agregarCliente(new Cliente(nombre,apellido,dni,direccion,email,telefono)); //Cliente guardado en la lista de clientes
     }
-    
-       @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Cajero cajero = (Cajero) o;
-        return transaccionesRealizadas == cajero.transaccionesRealizadas && Objects.equals(listaProductos, cajero.listaProductos);
+
+    private void agregarProductoAlCarrito() {
+        Scanner scanner = new Scanner(System.in);
+        Gestion_productos gestionProductos = new Gestion_productos();
+
+        System.out.println("Productos disponibles:");
+        gestionProductos.mostrarLista();
+
+        System.out.println("Ingrese el nombre del producto a agregar:");
+        String nombreProducto = scanner.nextLine();
+
+        Producto producto = gestionProductos.buscarProductoPorNombre(nombreProducto);
+        if (producto == null) {
+            System.out.println("Producto no encontrado.");
+            return;
+        }
+
+        System.out.println("Ingrese la cantidad a agregar:");
+        int cantidad = scanner.nextInt();
+        scanner.nextLine();
+
+        if (cantidad <= 0) {
+            System.out.println("La cantidad debe ser mayor que cero.");
+        } else {
+            addproducto(producto, cantidad);
+            System.out.println("Producto agregado al carrito.");
+        }
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(transaccionesRealizadas, listaProductos);
+    private void eliminarProductoDelCarrito() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Productos en el carrito:");
+        mostrarCarrito();
+
+        System.out.println("Ingrese el nombre del producto a eliminar:");
+        String nombreProducto = scanner.nextLine();
+
+        Producto productoAEliminar = null;
+        for (Producto producto : listaProductos) {
+            if (producto.getNombre().equalsIgnoreCase(nombreProducto)) {
+                productoAEliminar = producto;
+                break;
+            }
+        }
+        if (productoAEliminar == null) {
+            System.out.println("Producto no encontrado en el carrito.");
+        } else {
+            removeproducto(productoAEliminar);
+            System.out.println("Producto eliminado del carrito.");
+        }
     }
 
+    private void mostrarCarrito() {
+        System.out.println("\nProductos en el carrito:");
+        if (listaProductos.isEmpty()) {
+            System.out.println("El carrito está vacío.");
+        } else {
+            for (Producto producto : listaProductos) {
+                System.out.println("- " + producto.getNombre() + " | Precio: $" + producto.getPrecio());
+            }
+            System.out.println("Total: $" + listaProductos.stream().mapToDouble(Producto::getPrecio).sum());
+        }
+    }
 
     @Override
     public String toString() {
@@ -147,9 +253,9 @@ public class Cajero extends Empleado {
                 carrito.agregarProducto(producto, cant);
             }
         } while (!prod.equals("0"));
-
         return carrito;
     }
+
     public Carrito nuevoCarritoSinCliente (){
         Carrito carrito =new Carrito();
         Scanner sc = new Scanner(System.in);
@@ -196,7 +302,10 @@ public class Cajero extends Empleado {
         LocalDateTime horaCierre = LocalDateTime.now();
         System.out.println("Cierre de sesión del Cajero.");
         System.out.println("Hora de cierre: " + horaCierre);
-
+        if(transaccionesRealizadas > transaccionesMax) {
+            transaccionesMax = transaccionesRealizadas;
+            super.setSalario(this.getSalarioHora()+ transaccionesMax * 0.1);
+        }
         System.exit(0); // Termina el programa directamente
     }
 }

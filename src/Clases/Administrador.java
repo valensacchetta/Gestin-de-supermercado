@@ -152,11 +152,7 @@ public class Administrador extends Persona {
                     System.out.println("Ingrese el salario:");
                     double salario = scanner.nextDouble();
                     scanner.nextLine();
-                    if(cargo.equalsIgnoreCase("cajero")){ //aniade como cajero
-                        gestionEmpleados.agregarEmpleado(new Cajero(apellido, dni, nombre, cargo,salario));
-                    }else {
-                        gestionEmpleados.agregarEmpleado(new Empleado(dni, nombre, apellido, cargo, salario));
-                    }
+                    gestionEmpleados.agregarEmpleado(new Empleado(dni, nombre, apellido, cargo, salario));
                     break;
                 case 2:
                     System.out.println("Ingrese el DNI del empleado a eliminar:");
