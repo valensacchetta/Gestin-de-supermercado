@@ -27,7 +27,7 @@ public class Venta implements Serializable {
         this.fecha = fecha;
         this.cliente = cliente;
         this.listaProductos = new ArrayList<Producto>();
-        this.total = total;
+        this.total = total *0.9; //Clientes tienen 10% de descuento
     }
 
     public Venta(LocalDateTime fecha, List<Producto> listaProductos, double total) {
