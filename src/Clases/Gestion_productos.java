@@ -64,33 +64,6 @@ public class Gestion_productos {
         }
         return producto;
     }
-        public Producto obtenerProducto(int indice) {
-        try {
-            return listaProductos.get(indice);
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Error: El índice del producto está fuera de rango.");
-            return null;
-        }
-    }
-
-    public void agregarProducto(Producto producto) {
-        try {
-            listaProductos.add(producto);
-            System.out.println("Producto agregado exitosamente.");
-        } catch (NullPointerException e) {
-            System.out.println("Error: El producto no puede ser nulo.");
-        }
-    }
-
-    public void eliminarProducto(int indice) {
-        try {
-            Producto productoEliminado = listaProductos.remove(indice);
-            System.out.println("Producto eliminado: " + productoEliminado);
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Error: No existe un producto en ese índice.");
-        }
-    }
-}
 
     // Serialización
     private void guardarEnArchivo() {
