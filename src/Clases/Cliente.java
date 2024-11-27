@@ -74,6 +74,22 @@ public class Cliente extends Persona {
         this.status = status;
     }
 
+    public void setContador(int contador) {
+        this.contador = contador;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
     // Método para serialización a JSON
     @Override
     public JSONObject toJSON() {

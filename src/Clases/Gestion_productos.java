@@ -130,31 +130,38 @@ public class Gestion_productos {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Lista de productos:");
-        mostrarLista();
+        // Mostrar la lista de productos disponibles
+        System.out.println("Lista de productos disponibles:");
+        for (String nombreProducto : listaDeProductos.keySet()) {
+            System.out.println("- " + nombreProducto);
+        }
 
-        System.out.print("Ingrese el índice del producto que desea editar: ");
-        int indice;
-        try {
-            indice = scanner.nextInt();
-        } catch (Exception e) {
-            System.out.println("Entrada inválida. Debe ingresar un número.");
+        // Solicitar el nombre del producto a editar
+        System.out.print("Ingrese el nombre del producto que desea editar: ");
+        String nombre = scanner.nextLine();
+
+        // Buscar el producto en el mapa
+        Producto producto = listaDeProductos.get(nombre);
+        if (producto == null) {
+            System.out.println("Producto con nombre '" + nombre + "' no encontrado.");
             return;
         }
 
-        if (indice < 0 || indice >= listaDeProductos.size()) {
-            System.out.println("Índice fuera de rango. Intente nuevamente.");
-            return;
-        }
-
-        Producto producto = listaDeProductos.get(indice);
-
-        scanner.nextLine();
-
+        // Editar los atributos del producto
         System.out.println("¿Desea modificar el nombre actual (" + producto.getNombre() + ")? (s/n): ");
         if (scanner.nextLine().equalsIgnoreCase("s")) {
             System.out.print("Ingrese el nuevo nombre: ");
-            producto.setNombre(scanner.nextLine());
+            String nuevoNombre = scanner.nextLine();
+
+            // Validar si el nuevo nombre ya existe
+            if (listaDeProductos.containsKey(nuevoNombre)) {
+                System.out.println("Ya existe un producto con el nombre '" + nuevoNombre + "'.");
+            } else {
+                // Eliminar el producto con el nombre actual y añadirlo con el nuevo nombre
+                listaDeProductos.remove(nombre);
+                producto.setNombre(nuevoNombre);
+                listaDeProductos.put(nuevoNombre, producto);
+            }
         }
 
         System.out.println("¿Desea modificar el precio actual (" + producto.getPrecio() + ")? (s/n): ");
@@ -162,6 +169,7 @@ public class Gestion_productos {
             System.out.print("Ingrese el nuevo precio: ");
             try {
                 producto.setPrecio(scanner.nextDouble());
+                scanner.nextLine();
             } catch (Exception e) {
                 System.out.println("Entrada inválida. El precio no se actualizó.");
                 scanner.nextLine();
@@ -173,13 +181,12 @@ public class Gestion_productos {
             System.out.print("Ingrese la nueva cantidad de unidades: ");
             try {
                 producto.setUnidades(scanner.nextInt());
+                scanner.nextLine();
             } catch (Exception e) {
                 System.out.println("Entrada inválida. Las unidades no se actualizaron.");
                 scanner.nextLine();
             }
         }
-
-        scanner.nextLine();
 
         System.out.println("¿Desea modificar la categoría actual (" + producto.getCategoria() + ")? (s/n): ");
         if (scanner.nextLine().equalsIgnoreCase("s")) {
@@ -187,8 +194,13 @@ public class Gestion_productos {
             producto.setCategoria(scanner.nextLine());
         }
 
+        // Guardar los cambios en el archivo
+        guardarEnArchivo();
+
         System.out.println("Producto editado correctamente.");
     }
+
+
 
     public void ordenarPorNombre(boolean ascendente) {
         // Clonar la lista de productos a partir de los valores del mapa

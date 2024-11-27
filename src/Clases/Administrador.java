@@ -78,7 +78,8 @@ public class Administrador extends Persona {
             System.out.println("2. Dar de baja cliente");
             System.out.println("3. Buscar cliente por DNI");
             System.out.println("4. Mostrar clientes activos");
-            System.out.println("5. Volver");
+            System.out.println("5. Editar datos de un cliente");
+            System.out.println("6. Volver");
             int opcion = scanner.nextInt();
             scanner.nextLine();
 
@@ -146,6 +147,9 @@ public class Administrador extends Persona {
                     }
                     break;
                 case 5:
+                    gestionClientes.editarCliente();
+                    break;
+                case 6:
                     continuar = false;
                     break;
                 default:

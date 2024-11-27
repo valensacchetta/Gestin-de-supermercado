@@ -45,6 +45,14 @@ public abstract class Persona implements Serializable {
         return Apellido;
     }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setApellido(String apellido) {
+        Apellido = apellido;
+    }
+
     @Override
     public String toString() {
         return "Persona{" +

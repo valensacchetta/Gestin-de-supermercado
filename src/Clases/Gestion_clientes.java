@@ -156,6 +156,68 @@ public class Gestion_clientes {
         }
     }
 
+    public void editarCliente() {
+        if (clientes.isEmpty()) {
+            System.out.println("No hay clientes registrados para editar.");
+            return;
+        }
+
+        Scanner scanner = new Scanner(System.in);
+
+        // Mostrar la lista de clientes activos disponibles
+        System.out.println("Lista de clientes activos:");
+        for (Cliente cliente : clientes.values()) {
+            if (cliente.getStatus() == 1) { // Solo mostrar clientes activos
+                System.out.println("- DNI: " + cliente.getDni() + " | Nombre: " + cliente.getNombre());
+            }
+        }
+
+        // Solicitar el DNI del cliente a editar
+        System.out.print("Ingrese el DNI del cliente que desea editar: ");
+        String dni = scanner.nextLine();
+
+        // Buscar el cliente
+        Cliente cliente = clientes.get(dni);
+        if (cliente == null || cliente.getStatus() == 0) {
+            System.out.println("Cliente con DNI '" + dni + "' no encontrado o está dado de baja.");
+            return;
+        }
+
+        // Editar los atributos del cliente
+        System.out.println("¿Desea modificar el nombre actual (" + cliente.getNombre() + ")? (s/n): ");
+        if (scanner.nextLine().equalsIgnoreCase("s")) {
+            System.out.print("Ingrese el nuevo nombre: ");
+            cliente.setNombre(scanner.nextLine());
+        }
+
+        System.out.println("¿Desea modificar el apellido actual (" + cliente.getApellido() + ")? (s/n): ");
+        if (scanner.nextLine().equalsIgnoreCase("s")) {
+            System.out.print("Ingrese el nuevo apellido: ");
+            cliente.setApellido(scanner.nextLine());
+        }
+
+        System.out.println("¿Desea modificar el teléfono actual (" + cliente.getTelefono() + ")? (s/n): ");
+        if (scanner.nextLine().equalsIgnoreCase("s")) {
+            System.out.print("Ingrese el nuevo teléfono: ");
+            cliente.setTelefono(scanner.nextLine());
+        }
+
+        System.out.println("¿Desea modificar la dirección actual (" + cliente.getDireccion() + ")? (s/n): ");
+        if (scanner.nextLine().equalsIgnoreCase("s")) {
+            System.out.print("Ingrese la nueva dirección: ");
+            cliente.setDireccion(scanner.nextLine());
+        }
+
+        System.out.println("¿Desea modificar el correo actual (" + cliente.getCorreoElectronico() + ")? (s/n): ");
+        if (scanner.nextLine().equalsIgnoreCase("s")) {
+            System.out.print("Ingrese el nuevo correo electrónico: ");
+            cliente.setCorreoElectronico(scanner.nextLine());
+        }
+
+        // Guardar los cambios en el archivo JSON
+        guardarClientesEnArchivo();
+        System.out.println("Cliente editado correctamente.");
+    }
 
 
 }

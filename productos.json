@@ -1,23 +1,66 @@
-[{
-    "precio": 0.9,
-    "unidades": 20,
-    "categoria": "Lácteos",
-    "id": 1,
-    "nombre": "leche"
-},
+[
     {
-        "precio": 2.0,
+        "precio": 0.9,
+        "unidades": 20,
+        "categoria": "Lácteos",
+        "id": 1,
+        "nombre": "leche"
+    },
+    {
+        "precio": 1.1,
+        "unidades": 45,
+        "categoria": "Limpieza",
+        "id": 12,
+        "nombre": "jabon"
+    },
+    {
+        "precio": 0.7,
+        "unidades": 80,
+        "categoria": "Alimentos",
+        "id": 6,
+        "nombre": "azucar"
+    },
+    {
+        "precio": 0.4,
+        "unidades": 90,
+        "categoria": "Alimentos",
+        "id": 8,
+        "nombre": "fideos"
+    },
+    {
+        "precio": 1.6,
+        "unidades": 30,
+        "categoria": "Limpieza",
+        "id": 13,
+        "nombre": "detergente"
+    },
+    {
+        "precio": 0.8,
+        "unidades": 60,
+        "categoria": "Bebidas",
+        "id": 10,
+        "nombre": "te"
+    },
+    {
+        "precio": 3,
+        "unidades": 10,
+        "categoria": "Lácteos",
+        "id": 3,
+        "nombre": "queso"
+    },
+    {
+        "precio": 2,
         "unidades": 50,
         "categoria": "Lácteos",
         "id": 2,
         "nombre": "yogur"
     },
     {
-        "precio": 3.0,
-        "unidades": 10,
-        "categoria": "Lácteos",
-        "id": 3,
-        "nombre": "queso"
+        "precio": 1.8,
+        "unidades": 35,
+        "categoria": "Bebidas",
+        "id": 11,
+        "nombre": "cafe"
     },
     {
         "precio": 1.9,
@@ -27,79 +70,38 @@
         "nombre": "manteca"
     },
     {
-        "precio": 0.5, 
-        "unidades": 100, 
-        "categoria": "alimentos",
-        "id": 5, 
-        "nombre": "sal"
-    },
-    {
-        "precio": 0.7, 
-        "unidades": 80,
-        "categoria": "Alimentos",
-        "id": 6, 
-        "nombre": "azucar"
-    },
-    {
-        "precio": 0.6, 
-        "unidades": 120, 
-        "categoria": "Alimentos", 
-        "id": 7, 
-        "nombre": "arroz"
-    },
-    {
-        "precio": 0.4, 
-        "unidades": 90, 
-        "categoria": "Alimentos", 
-        "id": 8, 
-        "nombre": "fideos"
-    },
-    {
-        "precio": 1.2, 
-        "unidades": 25, 
-        "categoria": "Bebidas", 
-        "id": 9, 
+        "precio": 1.2,
+        "unidades": 25,
+        "categoria": "Bebidas",
+        "id": 9,
         "nombre": "jugo de naranja"
     },
     {
-        "precio": 0.8, 
-        "unidades": 60, 
-        "categoria": "Bebidas", 
-        "id": 10, 
-        "nombre": "te"
+        "precio": 3,
+        "unidades": 40,
+        "categoria": "Panadería",
+        "id": 15,
+        "nombre": "sandwich de jamon y queso"
     },
     {
-        "precio": 1.8, 
-        "unidades": 35, 
-        "categoria": "Bebidas", 
-        "id": 11, 
-        "nombre": "cafe"
-    },
-    {
-        "precio": 1.1, 
-        "unidades": 45, 
-        "categoria": "Limpieza", 
-        "id": 12, 
-        "nombre": "jabon"
-    },
-    {
-        "precio": 1.6, 
-        "unidades": 30, 
-        "categoria": "Limpieza", 
-        "id": 13, 
-        "nombre": "detergente"
-    },
-    {
-        "precio": 1.5, 
-        "unidades": 30, 
-        "categoria": "Panadería", 
-        "id": 14, 
+        "precio": 2,
+        "unidades": 30,
+        "categoria": "Panadería",
+        "id": 14,
         "nombre": "pan"
     },
     {
-        "precio": 3.0, 
-        "unidades": 40, 
-        "categoria": "Panadería", 
-        "id": 15, 
-        "nombre": "sandwich de jamon y queso"}
+        "precio": 0.6,
+        "unidades": 120,
+        "categoria": "Alimentos",
+        "id": 7,
+        "nombre": "garbanzo"
+    },
+    {
+        "precio": 0.7,
+        "unidades": 100,
+        "categoria": "alimentos",
+        "id": 5,
+        "nombre": "sal"
+    }
 ]
