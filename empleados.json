@@ -1,0 +1,122 @@
+[
+    {
+        "apellido": "martin",
+        "salario": 80,
+        "id": 1,
+        "cargo": "cajero",
+        "nombre": "lucas",
+        "dni": "23165478"
+    },
+    {
+        "apellido": "garcia",
+        "salario": 90,
+        "id": 2,
+        "cargo": "limpieza",
+        "nombre": "ana",
+        "dni": "24567890"
+    },
+    {
+        "apellido": "lopez",
+        "salario": 70,
+        "id": 3,
+        "cargo": "vendedor",
+        "nombre": "juan",
+        "dni": "23654321"
+    },
+    {
+        "apellido": "perez",
+        "salario": 85,
+        "id": 4,
+        "cargo": "cajero",
+        "nombre": "maria",
+        "dni": "23122344"
+    },
+    {
+        "apellido": "rodriguez",
+        "salario": 95,
+        "id": 5,
+        "cargo": "supervisor",
+        "nombre": "pedro",
+        "dni": "26547890"
+    },
+    {
+        "apellido": "diaz",
+        "salario": 75,
+        "id": 6,
+        "cargo": "vendedor",
+        "nombre": "sofia",
+        "dni": "23987654"
+    },
+    {
+        "apellido": "garcia",
+        "salario": 110,
+        "id": 7,
+        "cargo": "limpieza",
+        "nombre": "jose",
+        "dni": "24512378"
+    },
+    {
+        "apellido": "martinez",
+        "salario": 60,
+        "id": 8,
+        "cargo": "cajero",
+        "nombre": "laura",
+        "dni": "21548764"
+    },
+    {
+        "apellido": "fernandez",
+        "salario": 100,
+        "id": 9,
+        "cargo": "supervisor",
+        "nombre": "luis",
+        "dni": "22123456"
+    },
+    {
+        "apellido": "gomez",
+        "salario": 80,
+        "id": 10,
+        "cargo": "vendedor",
+        "nombre": "elena",
+        "dni": "24876543"
+    },
+    {
+        "apellido": "rojas",
+        "salario": 90,
+        "id": 11,
+        "cargo": "cajero",
+        "nombre": "josefa",
+        "dni": "23647895"
+    },
+    {
+        "apellido": "jimenez",
+        "salario": 95,
+        "id": 12,
+        "cargo": "limpieza",
+        "nombre": "francisco",
+        "dni": "25678904"
+    },
+    {
+        "apellido": "sanchez",
+        "salario": 70,
+        "id": 13,
+        "cargo": "vendedor",
+        "nombre": "martin",
+        "dni": "24256789"
+    },
+    {
+        "apellido": "vazquez",
+        "salario": 80,
+        "id": 14,
+        "cargo": "supervisor",
+        "nombre": "carla",
+        "dni": "22234567"
+    },
+    {
+        "apellido": "mora",
+        "salario": 85,
+        "id": 15,
+        "cargo": "cajero",
+        "nombre": "gustavo",
+        "dni": "23154312"
+    }
+]
