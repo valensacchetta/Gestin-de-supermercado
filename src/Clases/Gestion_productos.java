@@ -59,7 +59,15 @@ public class Gestion_productos {
         if (listaDeProductos.isEmpty()) {
             System.out.println("La lista de productos está vacía.");
         } else {
-            listaDeProductos.values().forEach(System.out::println);
+            for (Producto producto : listaDeProductos.values()) {
+                System.out.println("-------------------------------------------------");
+                System.out.println(producto.getNombre());
+                System.out.println(producto.getId());
+                System.out.println(producto.getPrecio());
+                System.out.println(producto.getCategoria());
+                System.out.println(producto.getUnidades());
+                System.out.println("-------------------------------------------------");
+            }
         }
     }
 
@@ -113,7 +121,7 @@ public class Gestion_productos {
         }
     }
 
-    /*
+
     public void editarProducto() {
         if (listaDeProductos.isEmpty()) {
             System.out.println("No hay productos en la lista para editar.");
@@ -182,7 +190,62 @@ public class Gestion_productos {
         System.out.println("Producto editado correctamente.");
     }
 
-     */
+    public void ordenarPorNombre(boolean ascendente) {
+        // Clonar la lista de productos a partir de los valores del mapa
+        List<Producto> productosOrdenados = new ArrayList<>(listaDeProductos.values());
+
+        // Ordenar por nombre usando un comparador anonimo
+        Collections.sort(productosOrdenados, new Comparator<Producto>() {
+            @Override
+            public int compare(Producto p1, Producto p2) {
+                return ascendente
+                        ? p1.getNombre().compareToIgnoreCase(p2.getNombre())
+                        : p2.getNombre().compareToIgnoreCase(p1.getNombre());
+            }
+        });
+
+        for (int i = 0; i < productosOrdenados.size(); i++) {
+            System.out.println("-------------------------------------------------");
+            System.out.println(productosOrdenados.get(i).getId());
+            System.out.println(productosOrdenados.get(i).getNombre());
+            System.out.println(productosOrdenados.get(i).getPrecio());
+            System.out.println(productosOrdenados.get(i).getCategoria());
+            System.out.println(productosOrdenados.get(i).getUnidades());
+            System.out.println("-------------------------------------------------");
+        }
+    }
+
+    public void ordenarPorPrecio(boolean ascendente) {
+        if (listaDeProductos.isEmpty()) {
+            System.out.println("La lista de productos está vacía. No hay nada que ordenar.");
+            return;
+        }
+
+        // Convertir los valores del mapa a una lista
+        List<Producto> productosOrdenados = new ArrayList<>(listaDeProductos.values());
+
+        // Ordenar por precio utilizando una expresión lambda
+        productosOrdenados.sort(new Comparator<Producto>() {
+            @Override
+            public int compare(Producto p1, Producto p2) {
+                return ascendente
+                        ? Double.compare(p1.getPrecio(), p2.getPrecio())
+                        : Double.compare(p2.getPrecio(), p1.getPrecio());
+            }
+        });
+
+        // Mostrar los productos ordenados
+        System.out.println("Productos ordenados por precio " + (ascendente ? "(ascendente):" : "(descendente):"));
+        for (Producto producto : productosOrdenados) {
+            System.out.println("-------------------------------------------------");
+            System.out.println(producto.getNombre());
+            System.out.println(producto.getId());
+            System.out.println(producto.getPrecio());
+            System.out.println(producto.getCategoria());
+            System.out.println(producto.getUnidades());
+            System.out.println("-------------------------------------------------");
+        }
+    }
 
 
 

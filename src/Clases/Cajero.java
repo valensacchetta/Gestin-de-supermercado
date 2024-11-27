@@ -151,7 +151,7 @@ public class Cajero extends Empleado {
         System.out.println("Ingrese el email del cliente:");
         String email = sc.nextLine();
         System.out.println("Ingrese el telefono del cliente:");
-        int telefono = sc.nextInt();
+        String telefono = sc.nextLine();
         sc.nextLine();
         gestionClientes.agregarCliente(new Cliente(nombre,apellido,dni,direccion,email,telefono)); //Cliente guardado en la lista de clientes
     }

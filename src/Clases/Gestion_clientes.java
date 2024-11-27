@@ -8,8 +8,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Gestion_clientes {
 
@@ -77,7 +76,16 @@ public class Gestion_clientes {
             System.out.println("Lista de clientes activos:");
             for (Cliente cliente : clientes.values()) {
                 if (cliente.getStatus() == 1) { // Solo mostrar activos
-                    System.out.println(cliente);
+                    System.out.println("-------------------------------------------");
+                    System.out.println("ID: " + cliente.getId());
+                    System.out.println("DNI: " + cliente.getDni());
+                    System.out.println("Nombre: " + cliente.getNombre());
+                    System.out.println("Apellido: " + cliente.getApellido());
+                    System.out.println("Telefono: " + cliente.getTelefono());
+                    System.out.println("Correo: " + cliente.getCorreoElectronico());
+                    System.out.println("Direccion: " + cliente.getDireccion());
+                    System.out.println("Status: " + cliente.getStatus());
+                    System.out.println("-------------------------------------------");
                 }
             }
         }
@@ -117,4 +125,37 @@ public class Gestion_clientes {
             System.err.println("Error al cargar los clientes: " + e.getMessage());
         }
     }
+
+    public void ordenarPorNombre(boolean ascendente) {
+        // Clonar la lista de productos a partir de los valores del mapa
+        List<Cliente> clientesLista = new ArrayList<>(clientes.values());
+
+        // Ordenar por nombre usando un comparador anonimo
+        Collections.sort(clientesLista, new Comparator<Cliente>() {
+            @Override
+            public int compare(Cliente c1, Cliente c2) {
+                return ascendente
+                        ? c1.getNombre().compareToIgnoreCase(c2.getNombre())
+                        : c2.getNombre().compareToIgnoreCase(c1.getNombre());
+            }
+        });
+
+        for (int i = 0; i < clientesLista.size(); i++) {
+            if (clientesLista.get(i).getStatus() == 1){
+                System.out.println("-------------------------------------------------");
+                System.out.println(clientesLista.get(i).getId());
+                System.out.println(clientesLista.get(i).getNombre());
+                System.out.println(clientesLista.get(i).getApellido());
+                System.out.println(clientesLista.get(i).getTelefono());
+                System.out.println(clientesLista.get(i).getDni());
+                System.out.println(clientesLista.get(i).getCorreoElectronico());
+                System.out.println(clientesLista.get(i).getDireccion());
+                System.out.println(clientesLista.get(i).getStatus());
+                System.out.println("-------------------------------------------------");
+            }
+        }
+    }
+
+
+
 }

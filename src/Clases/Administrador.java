@@ -54,9 +54,9 @@ public class Administrador extends Persona {
                 case 3:
                     gestionarVentas(gestionVentas);
                     break;
-                    case 4:
-                        gestionarClientes(gestionClientes);
-                        break;
+                case 4:
+                    gestionarClientes(gestionClientes);
+                    break;
                 case 5:
                     System.out.println("Saliendo del sistema...");
                     continuar = false;
@@ -95,7 +95,7 @@ public class Administrador extends Persona {
                     System.out.println("Ingrese el email:");
                     String email = scanner.nextLine();
                     System.out.println("Ingrese el telefono:");
-                    int telefono = scanner.nextInt();
+                    String telefono = scanner.nextLine();
                     scanner.nextLine();
 
                     gestionClientes.agregarCliente(new Cliente(nombre, apellido, dni, direccion, email, telefono));
@@ -114,7 +114,36 @@ public class Administrador extends Persona {
                     }
                     break;
                 case 4:
-                    gestionClientes.mostrarClientes();
+                    System.out.println("Como quiere ver a los clientes?");
+                    System.out.println("1. Como se fueron guardando");
+                    System.out.println("2. Ordenados por nombre");
+                    Scanner scanner2 = new Scanner(System.in);
+                    int opcion2 = scanner2.nextInt();
+
+                    switch (opcion2) {
+                        case 1:
+                            gestionClientes.mostrarClientes();
+                            break;
+                        case 2:
+                            System.out.println("De forma ascendente o descendente");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            int opcion3 = scanner2.nextInt();
+
+                            if (opcion3 == 1) {
+                                gestionClientes.ordenarPorNombre(true);
+                            }
+                            else if (opcion3 == 2) {
+                                gestionClientes.ordenarPorNombre(false);
+                            }
+                            else {
+                                System.out.println("Ingrese un numero valido");
+                            }
+                            break;
+                        default:
+                            System.out.println("Opcion no valida, intente de nuevo.");
+                            break;
+                    }
                     break;
                 case 5:
                     continuar = false;
@@ -170,7 +199,36 @@ public class Administrador extends Persona {
                     }
                     break;
                 case 4:
-                    gestionEmpleados.mostrarEmpleados();
+                    System.out.println("Como quiere ver los empleados?");
+                    System.out.println("1. Como se fueron guardando");
+                    System.out.println("2. Ordenados por nombre");
+                    Scanner scanner2 = new Scanner(System.in);
+                    int opcion2 = scanner2.nextInt();
+
+                    switch (opcion2) {
+                        case 1:
+                            gestionEmpleados.mostrarEmpleados();
+                            break;
+                        case 2:
+                            System.out.println("De forma ascendente o descendente");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            int opcion3 = scanner2.nextInt();
+
+                            if (opcion3 == 1) {
+                                gestionEmpleados.ordenarPorNombre(true);
+                            }
+                            else if (opcion3 == 2) {
+                                gestionEmpleados.ordenarPorNombre(false);
+                            }
+                            else {
+                                System.out.println("Ingrese un numero valido");
+                            }
+                            break;
+                        default:
+                            System.out.println("Opcion no valida, intente de nuevo.");
+                            break;
+                    }
                     break;
                 case 5:
                     continuar = false;
@@ -191,7 +249,8 @@ public class Administrador extends Persona {
             System.out.println("2. Eliminar producto");
             System.out.println("3. Buscar producto por nombre");
             System.out.println("4. Mostrar todos los productos");
-            System.out.println("5. Volver");
+            System.out.println("5. Editar un producto");
+            System.out.println("6. Volver");
             int opcion = scanner.nextInt();
             scanner.nextLine();
 
@@ -225,9 +284,51 @@ public class Administrador extends Persona {
                     }
                     break;
                 case 4:
-                    gestionProductos.mostrarLista();
+                    System.out.println("Como quiere ver los productos?");
+                    System.out.println("1. Como se fueron guardando");
+                    System.out.println("2. Ordenados por nombre");
+                    System.out.println("3. Ordenados por precio");
+                    Scanner scanner2 = new Scanner(System.in);
+                    int opcion2 = scanner2.nextInt();
+
+                    switch (opcion2) {
+                        case 1:
+                            gestionProductos.mostrarLista();
+                            break;
+                        case 2:
+                            System.out.println("De forma ascendente o descendente");
+                            System.out.println("1. ascendente");
+                            System.out.println("2. descendente");
+                            int opcion3 = scanner2.nextInt();
+
+                            if (opcion3 == 1) {
+                                gestionProductos.ordenarPorNombre(true);
+                            }
+                            else if (opcion3 == 2) {
+                                gestionProductos.ordenarPorNombre(false);
+                            }
+                            break;
+                        case 3:
+                            System.out.println("De forma ascendente o descendente");
+                            System.out.println("1. ascendente");
+                            System.out.println("2. descendente");
+                            int opcion4 = scanner2.nextInt();
+
+                            if (opcion4 == 1) {
+                                gestionProductos.ordenarPorPrecio(true);
+                            }
+                            else if (opcion4 == 2) {
+                                gestionProductos.ordenarPorPrecio(false);
+                            }
+                            break;
+                        default:
+                            System.out.println("Opcion no valida, intente de nuevo.");
+                            break;
+                    }
                     break;
                 case 5:
+                    gestionProductos.editarProducto();
+                case 6:
                     continuar = false;
                     break;
                 default:

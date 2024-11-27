@@ -12,11 +12,11 @@ public class Cliente extends Persona {
     private int contador;
     private String direccion;
     private String correoElectronico;
-    private int telefono;
+    private String telefono;
     private int status; // 1 si esta dado de alta, 0 de baja
 
     //Constructores
-    public Cliente(String nombre,String apellido, String dni, String direccion, String correoElectronico, int telefono) {
+    public Cliente(String nombre,String apellido, String dni, String direccion, String correoElectronico, String telefono) {
         super(dni,nombre,apellido);
         id=++contador;
         this.status=1;
@@ -32,14 +32,14 @@ public class Cliente extends Persona {
             this.id = jsonCliente.getInt("id");
             this.direccion = jsonCliente.getString("direccion");
             this.correoElectronico = jsonCliente.optString("correoElectronico", null);
-            this.telefono = jsonCliente.getInt("telefono");
+            this.telefono = jsonCliente.getString("telefono");
             this.status = jsonCliente.getInt("status");
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-    public Cliente(String nombre,String apellido, String dni, String direccion, int telefono) {
+    public Cliente(String nombre,String apellido, String dni, String direccion, String telefono) {
         super(nombre,apellido,dni);
         id=++contador;
         this.status=1;
@@ -62,7 +62,7 @@ public class Cliente extends Persona {
         return correoElectronico;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 

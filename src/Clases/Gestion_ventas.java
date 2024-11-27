@@ -6,10 +6,7 @@ import org.json.JSONObject;
 
 import java.io.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Gestion_ventas {
     private Set<Venta> listaDeVentas;
@@ -44,6 +41,13 @@ public class Gestion_ventas {
         } else {
             for (Venta venta : listaDeVentas) {
                 System.out.println(venta);
+                System.out.println("-----------------------------------");
+                System.out.println("ID: " + venta.getIdVenta());
+                System.out.println("Fecha: " + venta.getFecha());
+                System.out.println("Cliente: " + venta.getCliente());
+                System.out.println("Lista de productos: " + venta.getListaProductos());
+                System.out.println("Total: " + venta.getTotal());
+                System.out.println("-----------------------------------");
             }
         }
     }
@@ -103,4 +107,37 @@ public class Gestion_ventas {
             System.out.println("No se encontró el archivo de ventas, comenzando con una lista vacía.");
         }
     }
+
+    public void ordenarPorMontoTotal(boolean ascendente) {
+        if (listaDeVentas.isEmpty()) {
+            System.out.println("No hay ventas registradas. No hay nada que ordenar.");
+            return;
+        }
+
+        // Convertir el conjunto a una lista
+        List<Venta> ventasOrdenadas = new ArrayList<>(listaDeVentas);
+
+        // Ordenar por precio total utilizando un Comparator anonimo
+        ventasOrdenadas.sort(new Comparator<Venta>() {
+            @Override
+            public int compare(Venta v1, Venta v2) {
+                return ascendente
+                        ? Double.compare(v1.getTotal(), v2.getTotal())
+                        : Double.compare(v2.getTotal(), v1.getTotal());
+            }
+        });
+
+        // Mostrar las ventas ordenadas
+        System.out.println("Ventas ordenadas por monto total " + (ascendente ? "(ascendente):" : "(descendente):"));
+        for (Venta venta : ventasOrdenadas) {
+            System.out.println("-------------------------------------------------");
+            System.out.println("ID Venta: " + venta.getIdVenta());
+            System.out.println("Fecha: " + venta.getFecha());
+            System.out.println("Cliente: " + venta.getCliente().getDni()); // Traemos el dni para identificarlo
+            System.out.println("Monto Total: " + venta.getTotal());
+            System.out.println("Productos: " + venta.getListaProductos());
+            System.out.println("-------------------------------------------------");
+        }
+    }
+
 }

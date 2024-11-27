@@ -4,7 +4,7 @@
         "nombre": "Luis",
         "apellido": "Martínez",
         "direccion": "Boulevard del Sol 789",
-        "telefono": 456789123,
+        "telefono": "456789123",
         "correoElectronico": "luis@example.com",
         "dni": "56781234",
         "status": 1
@@ -14,17 +14,17 @@
         "nombre": "Juan",
         "apellido": "Pérez",
         "direccion": "Calle Falsa 123",
-        "telefono": 123456789,
+        "telefono": "123456789",
         "correoElectronico": "juan@example.com",
         "dni": "12345678",
-        "status": 0
+        "status": 1
     },
     {
         "id": 3,
         "nombre": "Ana",
         "apellido": "Gómez",
         "direccion": "Avenida Siempre Viva 456",
-        "telefono": 987654321,
+        "telefono": "987654321",
         "correoElectronico": "ana@example.com",
         "dni": "87654321",
         "status": 1
@@ -34,7 +34,7 @@
         "nombre": "Clara",
         "apellido": "López",
         "direccion": "Calle Luna 321",
-        "telefono": 321654987,
+        "telefono": "321654987",
         "correoElectronico": "clara@example.com",
         "dni": "56781234",
         "status": 1
@@ -44,27 +44,27 @@
         "nombre": "Jorge",
         "apellido": "Hernández",
         "direccion": "Calle Sol 987",
-        "telefono": 654321987,
+        "telefono": "654321987",
         "correoElectronico": "jorge@example.com",
         "dni": "67894567",
-        "status": 0
+        "status": 1
     },
     {
         "id": 6,
         "nombre": "Laura",
         "apellido": "Pérez",
         "direccion": "Boulevard Paz 654",
-        "telefono": 456789654,
+        "telefono": "456789654",
         "correoElectronico": "laura@example.com",
         "dni": "76543456",
-        "status": 0
+        "status": 1
     },
     {
         "id": 7,
         "nombre": "Sofía",
         "apellido": "Rojas",
         "direccion": "Calle Amor 852",
-        "telefono": 852963741,
+        "telefono": "852963741",
         "correoElectronico": "sofia@example.com",
         "dni": "90876543",
         "status": 1
@@ -74,17 +74,17 @@
         "nombre": "Lucas",
         "apellido": "Vega",
         "direccion": "Avenida Luz 159",
-        "telefono": 159753486,
+        "telefono": "159753486",
         "correoElectronico": "lucas@example.com",
         "dni": "12349876",
-        "status": 0
+        "status": 1
     },
     {
         "id": 9,
         "nombre": "Marta",
         "apellido": "Morales",
         "direccion": "Calle Estrella 753",
-        "telefono": 753951486,
+        "telefono": "753951486",
         "correoElectronico": "marta@example.com",
         "dni": "34876543",
         "status": 1
@@ -94,7 +94,7 @@
         "nombre": "Fernando",
         "apellido": "Castro",
         "direccion": "Boulevard Vida 654",
-        "telefono": 456123789,
+        "telefono": "456123789",
         "correoElectronico": "fernando@example.com",
         "dni": "56784321",
         "status": 1
@@ -104,17 +104,17 @@
         "nombre": "Diego",
         "apellido": "Blanco",
         "direccion": "Calle Sueño 951",
-        "telefono": 951753456,
+        "telefono": "951753456",
         "correoElectronico": "diego@example.com",
         "dni": "87654321",
-        "status": 0
+        "status": 1
     },
     {
         "id": 12,
         "nombre": "Paula",
         "apellido": "Ortega",
         "direccion": "Avenida Libertad 123",
-        "telefono": 123456741,
+        "telefono": "123456741",
         "correoElectronico": "paula@example.com",
         "dni": "12346789",
         "status": 1
@@ -124,17 +124,17 @@
         "nombre": "Elena",
         "apellido": "Salas",
         "direccion": "Boulevard Serenidad 852",
-        "telefono": 852456987,
+        "telefono": "852456987",
         "correoElectronico": "elena@example.com",
         "dni": "98765432",
-        "status": 0
+        "status": 1
     },
     {
         "id": 14,
         "nombre": "Mario",
         "apellido": "Sánchez",
         "direccion": "Calle Felicidad 321",
-        "telefono": 321789654,
+        "telefono": "321789654",
         "correoElectronico": "mario@example.com",
         "dni": "76543210",
         "status": 1
@@ -144,9 +144,9 @@
         "nombre": "Daniela",
         "apellido": "Torres",
         "direccion": "Calle Alegría 159",
-        "telefono": 159357486,
+        "telefono": "159357486",
         "correoElectronico": "daniela@example.com",
         "dni": "23456789",
-        "status": 0
+        "status": 1
     }
 ]
