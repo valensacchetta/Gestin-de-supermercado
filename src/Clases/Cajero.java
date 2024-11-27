@@ -119,6 +119,7 @@ public class Cajero extends Empleado {
 
         nuevaVenta = new Venta(LocalDateTime.now(), cliente, carrito.calcularTotal());
         System.out.println(nuevaVenta);
+        System.out.println("Precio con descuento del 10%");
         this.transaccionesRealizadas++;
     }
 
@@ -132,8 +133,6 @@ public class Cajero extends Empleado {
         listaProductos = carrito.getListaProductos();
         nuevaVenta = new Venta(LocalDateTime.now(), getListaProductos(), carrito.calcularTotal());
         System.out.println(nuevaVenta);
-
-        // Incrementar contador de transacciones para este cajero
         this.transaccionesRealizadas++;
     }
 
