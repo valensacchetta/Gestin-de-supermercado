@@ -1,38 +1,469 @@
-{"ventas": [{
-    "fecha": "2024-11-23T13:47:27.8161589",
-    "cliente": {
-        "apellido": "Pérez",
-        "direccion": "Calle Falsa 123",
-        "id": 1,
-        "telefono": 123456789,
-        "nombre": "Juan",
-        "correoElectronico": "juan@example.com",
-        "dni": "12345678",
-        "status": 1
-    },
-    "listaProductos": [
-        {
-            "precio": 10,
-            "unidades": 5,
-            "categoria": "Categoria 1",
-            "id": 1,
-            "nombre": "Producto A"
-        },
-        {
-            "precio": 20,
-            "unidades": 3,
-            "categoria": "Categoria 2",
-            "id": 2,
-            "nombre": "Producto B"
-        },
-        {
-            "precio": 15,
-            "unidades": 2,
-            "categoria": "Categoria 1",
-            "id": 3,
-            "nombre": "Producto C"
-        }
-    ],
-    "total": 45,
-    "idVenta": 1
-}]}
+{
+        "ventas": [
+            {
+                "fecha": "2024-11-23T13:47:27.8161589",
+                "cliente": {
+                    "id": 1,
+                    "nombre": "Luis",
+                    "apellido": "Martínez",
+                    "direccion": "Edison 789",
+                    "telefono": 456789123,
+                    "correoElectronico": "luis@example.com",
+                    "dni": "56781234",
+                    "status": 1
+            },
+                "listaProductos": [
+                    {
+                        "precio": 0.9,
+                        "unidades": 2,
+                        "categoria": "Lácteos",
+                        "id": 1,
+                        "nombre": "Leche"
+                    },
+                    {
+                        "precio": 0.4,
+                        "unidades": 2,
+                        "categoria": "Alimentos",
+                        "id": 8,
+                        "nombre": "Fideos"
+                    }
+                ],
+                "total": 2.6,
+                "idVenta": 1
+            },
+            {
+                "fecha": "2024-11-24T10:15:12.1234567",
+                "cliente": {
+                    "id": 2,
+                    "nombre": "Juan",
+                    "apellido": "Pérez",
+                    "direccion": "Mario Bravo 123",
+                    "telefono": 123456789,
+                    "correoElectronico": "juan@example.com",
+                    "dni": "12345678",
+                    "status": 0
+                },
+                "listaProductos": [
+                    {
+                        "precio": 0.8,
+                        "unidades": 2,
+                        "categoria": "Bebidas",
+                        "id": 10,
+                        "nombre": "Té"
+                    },
+                    {
+                        "precio": 1.6,
+                        "unidades": 3,
+                        "categoria": "Limpieza",
+                        "id": 13,
+                        "nombre": "Detergente"
+                    }
+                ],
+                "total": 6.4,
+                "idVenta": 2
+            },
+            {
+                "fecha": "2024-11-25T14:30:00.1111111",
+                "cliente": {
+                    "id": 3,
+                    "nombre": "Ana",
+                    "apellido": "Gómez",
+                    "direccion": "Avenida Fortunato de la Plaza 456",
+                    "telefono": 987654321,
+                    "correoElectronico": "ana@example.com",
+                    "dni": "87654321",
+                    "status": 1
+                },
+                "listaProductos": [
+                    {
+                        "precio": 1.5,
+                        "unidades": 2,
+                        "categoria": "Panadería",
+                        "id": 14,
+                        "nombre": "Pan"
+                    },
+                    {
+                        "precio": 3.0,
+                        "unidades": 2,
+                        "categoria": "Panadería",
+                        "id": 15,
+                        "nombre": "Sandwich de jamón y queso"
+                    }
+                ],
+                "total": 9,
+                "idVenta": 3
+            },
+            {
+                "fecha": "2024-11-25T16:50:43.9999999",
+                "cliente": {
+                    "id": 4,
+                    "nombre": "Clara",
+                    "apellido": "López",
+                    "direccion": "Luro 321",
+                    "telefono": 321654987,
+                    "correoElectronico": "clara@example.com",
+                    "dni": "56781234",
+                    "status": 1
+                },
+                "listaProductos": [
+                    {
+                        "precio": 2.0,
+                        "unidades": 3,
+                        "categoria": "Lácteos",
+                        "id": 2,
+                        "nombre": "Yogur"
+                    },
+                    {
+                        "precio": 3.0,
+                        "unidades": 1,
+                        "categoria": "Lácteos",
+                        "id": 3,
+                        "nombre": "Queso"
+                    }
+                ],
+                "total": 9,
+                "idVenta": 4
+            },
+            {
+                "fecha": "2024-11-26T09:20:30.2222222",
+                "cliente": {
+                    "id": 5,
+                    "nombre": "Jorge",
+                    "apellido": "Hernández",
+                    "direccion": "Independencia 987",
+                    "telefono": 654321987,
+                    "correoElectronico": "jorge@example.com",
+                    "dni": "67894567",
+                    "status": 0
+                },
+                "listaProductos": [
+                    {
+                        "precio": 1.5,
+                        "unidades": 1,
+                        "categoria": "Panadería",
+                        "id": 14,
+                        "nombre": "Pan"
+                    },
+                    {
+                        "precio": 0.6,
+                        "unidades": 2,
+                        "categoria": "Alimentos",
+                        "id": 7,
+                        "nombre": "Arroz"
+                    }
+                ],
+                "total": 2.7,
+                "idVenta": 5
+            },
+            {
+                "fecha": "2024-11-26T11:45:10.3333333",
+                "cliente": {
+                    "id": 6,
+                    "nombre": "Laura",
+                    "apellido": "Pérez",
+                    "direccion": "Juan B Justo 654",
+                    "telefono": 456789654,
+                    "correoElectronico": "laura@example.com",
+                    "dni": "76543456",
+                    "status": 0
+                },
+                "listaProductos": [
+                    {
+                        "precio": 1.9,
+                        "unidades": 1,
+                        "categoria": "Lácteos",
+                        "id": 4,
+                        "nombre": "Manteca"
+                    },
+                    {
+                        "precio": 0.5,
+                        "unidades": 2,
+                        "categoria": "Alimentos",
+                        "id": 5,
+                        "nombre": "Sal"
+                    }
+                ],
+                "total": 2.9,
+                "idVenta": 6
+            },
+            {
+                "fecha": "2024-11-27T08:15:30.4444444",
+                "cliente": {
+                    "id": 7,
+                    "nombre": "Sofía",
+                    "apellido": "Rojas",
+                    "direccion": "Formosa 852",
+                    "telefono": 852963741,
+                    "correoElectronico": "sofia@example.com",
+                    "dni": "90876543",
+                    "status": 1
+                },
+                "listaProductos": [
+                    {
+                        "precio": 0.7,
+                        "unidades": 7,
+                        "categoria": "Alimentos",
+                        "id": 6,
+                        "nombre": "Azúcar"
+                    },
+                    {
+                        "precio": 0.6,
+                        "unidades": 6,
+                        "categoria": "Alimentos",
+                        "id": 7,
+                        "nombre": "Arroz"
+                    }
+                ],
+                "total": 8.5,
+                "idVenta": 7
+            },
+            {
+                "fecha": "2024-11-27T14:00:00.5555555",
+                "cliente": {
+                    "id": 8,
+                    "nombre": "Lucas",
+                    "apellido": "Vega",
+                    "direccion": "Corrientes 159",
+                    "telefono": 159753486,
+                    "correoElectronico": "lucas@example.com",
+                    "dni": "12349876",
+                    "status": 0
+                },
+                "listaProductos": [
+                    {
+                        "precio": 1.5,
+                        "unidades": 1,
+                        "categoria": "Panadería",
+                        "id": 14,
+                        "nombre": "Pan"
+                    },
+                    {
+                        "precio": 0.6,
+                        "unidades": 2,
+                        "categoria": "Alimentos",
+                        "id": 7,
+                        "nombre": "Arroz"
+                    }
+                ],
+                "total": 2.7,
+                "idVenta": 8
+            },
+            {
+                "fecha": "2024-11-28T15:30:00.6666666",
+                "cliente": {
+                    "id": 9,
+                    "nombre": "Marta",
+                    "apellido": "Morales",
+                    "direccion": "San Luis 753",
+                    "telefono": 753951486,
+                    "correoElectronico": "marta@example.com",
+                    "dni": "34876543",
+                    "status": 1
+                },
+                "listaProductos": [
+                    {
+                        "precio": 0.4,
+                        "unidades": 2,
+                        "categoria": "Alimentos",
+                        "id": 8,
+                        "nombre": "Fideos"
+                    },
+                    {
+                        "precio": 1.2,
+                        "unidades": 1,
+                        "categoria": "Bebidas",
+                        "id": 9,
+                        "nombre": "Jugo de Naranja"
+                    }
+                ],
+                "total": 2,
+                "idVenta": 9
+            },
+            {
+                "fecha": "2024-11-29T16:00:00.7777777",
+                "cliente": {
+                    "id": 10,
+                    "nombre": "Fernando",
+                    "apellido": "Castro",
+                    "direccion": "Buenos Aires 654",
+                    "telefono": 456123789,
+                    "correoElectronico": "fernando@example.com",
+                    "dni": "56784321",
+                    "status": 1
+                },
+                "listaProductos": [
+                    {
+                        "precio": 1.8,
+                        "unidades": 1,
+                        "categoria": "Bebidas",
+                        "id": 11,
+                        "nombre": "Café"
+                    },
+                    {
+                        "precio": 1.1,
+                        "unidades": 5,
+                        "categoria": "Limpieza",
+                        "id": 12,
+                        "nombre": "Jabón"
+                    }
+                ],
+                "total": 7.3,
+                "idVenta": 10
+            },
+            {
+                "fecha": "2024-11-29T17:30:00.8888888",
+                "cliente": {
+                    "id": 11,
+                    "nombre": "Diego",
+                    "apellido": "Blanco",
+                    "direccion": "Puan 951",
+                    "telefono": 951753456,
+                    "correoElectronico": "diego@example.com",
+                    "dni": "87654321",
+                    "status": 0
+                },
+                "listaProductos": [
+                    {
+                        "precio": 1.6,
+                        "unidades": 3,
+                        "categoria": "Limpieza",
+                        "id": 13,
+                        "nombre": "Detergente"
+                    },
+                    {
+                        "precio": 1.5,
+                        "unidades": 3,
+                        "categoria": "Panadería",
+                        "id": 14,
+                        "nombre": "Pan"
+                    }
+                ],
+                "total": 9.3,
+                "idVenta": 11
+            },
+            {
+                "fecha": "2024-11-30T09:00:00.9999999",
+                "cliente": {
+                    "id": 12,
+                    "nombre": "Paula",
+                    "apellido": "Ortega",
+                    "direccion": "Avenida Libertad 123",
+                    "telefono": 123456741,
+                    "correoElectronico": "paula@example.com",
+                    "dni": "12346789",
+                    "status": 1
+                },
+                "listaProductos": [
+                    {
+                        "precio": 0.7,
+                        "unidades": 7,
+                        "categoria": "Alimentos",
+                        "id": 6,
+                        "nombre": "Azúcar"
+                    },
+                    {
+                        "precio": 0.6,
+                        "unidades": 6,
+                        "categoria": "Alimentos",
+                        "id": 7,
+                        "nombre": "Arroz"
+                    }
+                ],
+                "total": 8.5,
+                "idVenta": 12
+            },
+            {
+                "fecha": "2024-11-30T12:15:20.1111111",
+                "cliente": {
+                    "id": 13,
+                    "nombre": "Elena",
+                    "apellido": "Salas",
+                    "direccion": "Mitre 852",
+                    "telefono": 852456987,
+                    "correoElectronico": "elena@example.com",
+                    "dni": "98765432",
+                    "status": 0
+                },
+                "listaProductos": [
+                    {
+                        "precio": 2.0,
+                        "unidades": 5,
+                        "categoria": "Lácteos",
+                        "id": 2,
+                        "nombre": "Yogur"
+                    },
+                    {
+                        "precio": 0.5,
+                        "unidades": 2,
+                        "categoria": "Alimentos",
+                        "id": 5,
+                        "nombre": "Sal"
+                    }
+                ],
+                "total": 11,
+                "idVenta": 13
+            },
+            {
+                "fecha": "2024-12-01T14:30:10.2222222",
+                "cliente": {
+                    "id": 14,
+                    "nombre": "Mario",
+                    "apellido": "Sánchez",
+                    "direccion": "Avellaneda 321",
+                    "telefono": 321789654,
+                    "correoElectronico": "mario@example.com",
+                    "dni": "76543210",
+                    "status": 1
+                },
+                "listaProductos": [
+                    {
+                        "precio": 0.4,
+                        "unidades": 1,
+                        "categoria": "Alimentos",
+                        "id": 8,
+                        "nombre": "Fideos"
+                    },
+                    {
+                        "precio": 1.8,
+                        "unidades": 1,
+                        "categoria": "Bebidas",
+                        "id": 11,
+                        "nombre": "Café"
+                    }
+                ],
+                "total": 2.2,
+                "idVenta": 14
+            },
+            {
+                "fecha": "2024-12-01T16:45:30.3333333",
+                "cliente": {
+                    "id": 15,
+                    "nombre": "Daniela",
+                    "apellido": "Torres",
+                    "direccion": "San Lorenzo 159",
+                    "telefono": 159357486,
+                    "correoElectronico": "daniela@example.com",
+                    "dni": "23456789",
+                    "status": 0
+                },
+                "listaProductos": [
+                    {
+                        "precio": 0.9,
+                        "unidades": 10,
+                        "categoria": "Lácteos",
+                        "id": 1,
+                        "nombre": "Leche"
+                    },
+                    {
+                        "precio": 1.5,
+                        "unidades": 1,
+                        "categoria": "Panadería",
+                        "id": 14,
+                        "nombre": "Pan"
+                    }
+                ],
+                "total": 10.5,
+                "idVenta": 15
+            }
+        ]
+}
